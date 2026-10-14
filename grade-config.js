@@ -1,0 +1,1 @@
+﻿window.GEOMETRY_LAB_GRADE = 2;
