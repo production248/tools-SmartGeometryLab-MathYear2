@@ -6,13 +6,22 @@
   <meta name="theme-color" content="#ffd778">
   <meta name="description" content="Makmal geometri interaktif untuk murid Matematik Tahun 2 SK dan SJKC.">
   <title>Smart Geometry Lab - Math Year 2</title>
+  <link rel="icon" type="image/png" href="edcloud-app-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Noto+Sans+SC:wght@500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=1">
 </head>
 <body>
-  <div class="page-shell">
+  <section class="auth-gate" id="authGate" role="status" aria-live="polite" aria-atomic="true" aria-labelledby="authTitle">
+    <div class="auth-card">
+      <span class="auth-indicator" aria-hidden="true"></span>
+      <h1 id="authTitle">Connecting to EdCloud…</h1>
+      <p id="authMessage">Please wait while your secure tool session is verified.</p>
+    </div>
+  </section>
+
+  <div class="page-shell" hidden>
     <header class="topbar">
       <div class="brand">
         <div class="brand-icon" aria-hidden="true">📐</div>
@@ -91,7 +100,7 @@
     </div>
   </div>
 
-  <footer class="forest-footer" aria-hidden="true"><img src="assets/forest-footer.png" alt=""></footer>
+  <footer class="forest-footer" aria-hidden="true" hidden><img src="assets/forest-footer.png" alt=""></footer>
 
   <dialog id="teacherDialog" class="teacher-dialog">
     <form method="dialog" id="teacherForm">
@@ -110,7 +119,7 @@
   </dialog>
 
   <script src="grade-config.js"></script>
-  <script src="app.js?v=1"></script>
+  <script type="module" src="auth-bootstrap.js"></script>
 </body>
 </html>
 

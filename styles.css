@@ -32,6 +32,70 @@ body {
 
 button, select, input { font: inherit; color: inherit; }
 button { cursor: pointer; }
+
+.auth-gate {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  min-height: 100vh;
+  padding: 24px;
+  place-items: center;
+}
+
+.auth-card {
+  width: min(520px, 100%);
+  padding: 38px 32px;
+  text-align: center;
+  border: 3px solid rgba(7, 95, 78, .28);
+  border-radius: 24px;
+  background: rgba(255, 252, 244, .96);
+  box-shadow: var(--shadow);
+}
+
+.auth-card h1 {
+  margin: 0 0 12px;
+}
+
+.auth-card p {
+  margin: 0;
+  color: #775521;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.auth-indicator {
+  display: block;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 22px;
+  border: 7px solid var(--mint);
+  border-top-color: var(--green);
+  border-radius: 50%;
+  animation: auth-spin .8s linear infinite;
+}
+
+.auth-gate.is-error .auth-card {
+  border-color: rgba(186, 63, 69, .35);
+}
+
+.auth-gate.is-error .auth-indicator {
+  display: grid;
+  color: var(--red);
+  font-size: 32px;
+  font-weight: 800;
+  border: 3px solid currentColor;
+  animation: none;
+  place-items: center;
+}
+
+.auth-gate.is-error .auth-indicator::before {
+  content: "!";
+}
+
+@keyframes auth-spin {
+  to { transform: rotate(360deg); }
+}
+
 button:focus-visible, select:focus-visible, input:focus-visible {
   outline: 4px solid rgba(18, 139, 117, .25);
   outline-offset: 2px;
