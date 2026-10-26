@@ -1,0 +1,118 @@
+﻿<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffc129">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Makmal geometri interaktif untuk murid Matematik Tahun 2 SK dan SJKC.">
+  <title>Smart Geometry Lab - Math Year 2</title>
+  <link rel="icon" type="image/png" href="edcloud-app-icon.png">
+  <link rel="preload" href="assets/ui-icons/sound-off.png" as="image" type="image/png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Local preview entry: intentionally bypasses EdCloud authorization. -->
+  <div class="page-shell">
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-icon" src="edcloud-app-icon.png" alt="" aria-hidden="true">
+        <div>
+          <h1 data-i18n="title">Jom Teroka Geometri!</h1>
+          <p data-i18n="subtitle">Teroka, lipat dan bina bentuk.</p>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <button id="fullscreenToggle" class="fullscreen-button" type="button">
+          <span aria-hidden="true">⛶</span>
+          <span data-i18n="fullscreen">Skrin penuh</span>
+        </button>
+        <button id="soundToggle" class="sound-button" type="button" aria-pressed="true">
+          <img id="soundIcon" class="sound-icon" src="assets/ui-icons/sound-on.png" width="28" height="28" alt="" aria-hidden="true" draggable="false">
+          <span data-i18n="soundOn">Bunyi</span>
+        </button>
+        <div class="language-switch" role="group" aria-label="Language">
+          <button type="button" class="language-btn active" data-lang="ms" aria-pressed="true">BM</button>
+          <button type="button" class="language-btn" data-lang="zh" aria-pressed="false">中文</button>
+          <button type="button" class="language-btn" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="mode-tabs activity-tabs" id="activityTabs" aria-label="Aktiviti geometri">
+      <button type="button" class="activity-tab active" data-activity="shapeExplorer" aria-pressed="true">
+        <img class="mode-icon" src="assets/activity-icons/shape-explorer-256.png" width="52" height="52" alt="" aria-hidden="true" draggable="false">
+        <span data-i18n="activityShapeExplorer">Peneroka bentuk</span>
+      </button>
+      <button type="button" class="activity-tab" data-activity="netBuilder" aria-pressed="false">
+        <img class="mode-icon" src="assets/activity-icons/net-builder-256.png" width="52" height="52" alt="" aria-hidden="true" draggable="false">
+        <span data-i18n="activityNetBuilder">Pelipat bentangan</span>
+      </button>
+      <button type="button" class="activity-tab" data-activity="shapeDrawer" aria-pressed="false">
+        <img class="mode-icon" src="assets/activity-icons/shape-drawer-256.png" width="52" height="52" alt="" aria-hidden="true" draggable="false">
+        <span data-i18n="activityShapeDrawer">Papan lukis bentuk</span>
+      </button>
+    </nav>
+
+    <main class="workspace">
+      <section class="activity-card" aria-live="polite">
+        <div class="activity-heading">
+          <div>
+            <div class="eyebrow" data-i18n="tryIt">Mari cuba!</div>
+            <h2 id="activityTitle"></h2>
+          </div>
+          <div class="heading-actions">
+            <span id="gradeBadge" class="grade-badge">Matematik Tahun 2</span>
+            <button id="teacherButton" class="teacher-button compact" type="button">👩‍🏫 <span data-i18n="teacherMode">Tetapan guru</span></button>
+            <button id="resetToolButton" class="secondary-button compact" type="button">↻ <span data-i18n="resetTool">Tetapkan semula alat</span></button>
+          </div>
+        </div>
+
+        <div id="challengePanel" class="challenge-panel"></div>
+        <div id="visualStage" class="visual-stage"></div>
+        <div id="controlArea" class="control-area"></div>
+        <div id="liveSummary" class="feedback neutral" role="status"></div>
+      </section>
+    </main>
+
+    <div class="compat-controls" hidden aria-hidden="true">
+      <h2 id="sideTitle">Bentuk &amp; Simetri</h2>
+      <label for="gradeSelect" data-i18n="grade">Tahun</label>
+      <select id="gradeSelect">
+        <option value="2">Tahun 2</option>
+        <option value="3">Tahun 3</option>
+        <option value="4">Tahun 4</option>
+        <option value="5">Tahun 5</option>
+        <option value="6">Tahun 6</option>
+      </select>
+      <label for="activitySelect" data-i18n="activity">Alat</label>
+      <select id="activitySelect"></select>
+      <div id="scopeNote"></div>
+      <div id="tipBox"><span aria-hidden="true"></span><span></span></div>
+      <div id="toolGuide"></div>
+    </div>
+  </div>
+
+  <dialog id="teacherDialog" class="teacher-dialog">
+    <form method="dialog" id="teacherForm">
+      <button class="dialog-close" value="cancel" aria-label="Close" type="submit">×</button>
+      <div class="eyebrow" data-i18n="teacherMode">Tetapan guru</div>
+      <h2 data-i18n="customSettings">Tetapkan nilai demonstrasi</h2>
+      <div class="divider"></div>
+      <p data-i18n="customHelp">Tetapkan ukuran untuk demonstrasi kelas. Medan berubah mengikut alat.</p>
+      <div id="teacherFields" class="teacher-fields"></div>
+      <p id="teacherError" class="dialog-error"></p>
+      <div class="dialog-actions">
+        <button type="submit" value="cancel" class="secondary-button" data-i18n="cancel">Batal</button>
+        <button type="button" id="useTeacherSettings" class="primary-button">✓ <span data-i18n="useSettings">Gunakan tetapan</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="grade-config.js"></script>
+  <script src="shared-components-loader.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+

@@ -48,7 +48,8 @@ async function startTool() {
   }
 
   try {
-    await import("./app.js?v=1");
+    await import("./shared-components-loader.js");
+    await import("./app.js");
   } catch {
     showStartupError(
       "Unable to start the tool",
@@ -58,7 +59,7 @@ async function startTool() {
   }
 
   pageShell.hidden = false;
-  forestFooter.hidden = false;
+  if (forestFooter) forestFooter.hidden = false;
   const appTitle = pageShell.querySelector("h1");
   authGate.remove();
 

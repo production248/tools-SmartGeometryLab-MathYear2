@@ -7,15 +7,22 @@ const configuredGrade = [2, 3, 4, 5, 6].includes(configuredGradeValue)
 
 const I18N = {
   title: ml("Jom Teroka Geometri!", "一起来探索几何！", "Let’s Explore Geometry!"),
-  subtitle: ml("Alat manipulatif berpandukan buku teks SK & SJKC Tahun 2–6.", "配合 SK 与 SJKC 二至六年级课本的操作工具。", "A hands-on tool aligned to SK & SJKC Year 2–6 textbooks."),
-  soundOn: ml("Bunyi: Buka", "声音：开", "Sound: On"),
-  soundOff: ml("Bunyi: Tutup", "声音：关", "Sound: Off"),
+  subtitle: ml("Teroka, lipat dan bina bentuk.", "探索、折叠和构造图形。", "Explore, fold and build shapes."),
+  soundOn: ml("Bunyi", "声音", "Sound"),
+  soundOff: ml("Senyap", "静音", "Muted"),
+  fullscreen: ml("Skrin penuh", "全屏", "Full screen"),
+  exitFullscreen: ml("Keluar penuh", "退出全屏", "Exit full screen"),
+  shapeFullscreen: ml("Paparan bentuk penuh", "图形全屏", "Full-screen shape"),
+  shapeExitFullscreen: ml("Keluar paparan bentuk", "退出图形全屏", "Exit shape full screen"),
   tabShape: ml("Bentuk & Simetri", "图形与对称", "Shapes & Symmetry"),
   tabLine: ml("Sudut & Garisan", "角与直线", "Angles & Lines"),
   tabMeasure: ml("Ukur & Bina", "测量与构造", "Measure & Build"),
   chooseActivity: ml("Pilih alat", "选择工具", "Choose a tool"),
   grade: ml("Tahun", "年级", "Year"),
   activity: ml("Alat", "工具", "Tool"),
+  activityShapeExplorer: ml("Peneroka bentuk", "图形探索", "Explore shapes"),
+  activityNetBuilder: ml("Pelipat bentangan", "折叠展开图", "Fold a net"),
+  activityShapeDrawer: ml("Papan lukis bentuk", "绘制图形", "Draw a shape"),
   tryIt: ml("Mari cuba!", "动手试试！", "Try it!"),
   teacherMode: ml("Tetapan guru", "老师设置", "Teacher settings"),
   resetTool: ml("Tetapkan semula alat", "重置工具", "Reset tool"),
@@ -221,22 +228,104 @@ const GUIDES = {
   ]
 };
 
+const GEOMETRY_GUIDE_COPY = {
+  "goal-shape-explorer": {
+    bm: { title: "Kenali bentuk", body: "Belajar membezakan bentuk 2D dan 3D serta mengenal sisi, bucu, permukaan dan tepi." },
+    zh: { title: "认识图形", body: "学习分辨二维和三维图形，并认识边、顶点、面和棱。" },
+    en: { title: "Explore shapes", body: "Learn to tell 2D and 3D shapes apart and identify their sides, vertices, faces and edges." }
+  },
+  "shape-choose": {
+    bm: { title: "Pilih bentuk", body: "Pilih satu bentuk daripada kad di bahagian bawah." },
+    zh: { title: "选择图形", body: "从下方的图形卡中选择一个图形。" },
+    en: { title: "Choose a shape", body: "Choose one shape from the cards below." }
+  },
+  "shape-move": {
+    bm: { title: "Gerakkan bentuk", body: "Putar bentuk 2D dengan peluncur atau seret model 3D untuk melihat setiap arah." },
+    zh: { title: "转动图形", body: "用滑杆旋转二维图形，或拖动三维模型从不同方向观察。" },
+    en: { title: "Move the shape", body: "Use the slider to rotate a 2D shape, or drag a 3D model to view every side." }
+  },
+  "shape-properties": {
+    bm: { title: "Semak ciri", body: "Tekan kad ciri untuk melihat nombor dan warna pada bentuk." },
+    zh: { title: "查看特征", body: "点击特征卡，在图形上查看对应的编号和颜色。" },
+    en: { title: "Check its features", body: "Tap a feature card to show its numbers and colours on the shape." }
+  },
+  "shape-summary": {
+    bm: { title: "Baca penerangan", body: "Baca penerangan di bawah untuk memahami ciri yang dipilih." },
+    zh: { title: "阅读说明", body: "阅读下方说明，理解刚才选择的图形特征。" },
+    en: { title: "Read the explanation", body: "Read the explanation below to understand the selected feature." }
+  },
+  "goal-net-builder": {
+    bm: { title: "Fahami bentangan", body: "Belajar bagaimana permukaan rata dilipat menjadi bentuk 3D dan bagaimana nombor mukanya sepadan." },
+    zh: { title: "认识展开图", body: "学习平面上的各个面怎样折成立体图形，并对应相同的面编号。" },
+    en: { title: "Understand nets", body: "Learn how flat faces fold into a 3D solid and how their face numbers match." }
+  },
+  "net-choose": {
+    bm: { title: "Pilih bentuk 3D", body: "Pilih kubus, kuboid, piramid atau silinder." },
+    zh: { title: "选择立体图形", body: "选择正方体、长方体、棱锥或圆柱体。" },
+    en: { title: "Choose a solid", body: "Choose a cube, cuboid, pyramid or cylinder." }
+  },
+  "net-compare": {
+    bm: { title: "Padankan kedua-duanya", body: "Bandingkan bentangan rata dengan binaan 3D dan cari nombor muka yang sama." },
+    zh: { title: "对照两个图形", body: "比较平面展开图和立体模型，找出相同的面编号。" },
+    en: { title: "Compare both views", body: "Compare the flat net with the 3D build and find the matching face numbers." }
+  },
+  "net-fold": {
+    bm: { title: "Lipat langkah demi langkah", body: "Tekan Langkah seterusnya untuk melipat satu muka pada satu masa." },
+    zh: { title: "逐步折叠", body: "点击下一步，每次折起一个面。" },
+    en: { title: "Fold step by step", body: "Tap Next step to fold one face at a time." }
+  },
+  "net-check": {
+    bm: { title: "Semak muka", body: "Lihat senarai muka yang telah dilipat sehingga bentuk 3D lengkap." },
+    zh: { title: "检查各个面", body: "查看已经折起的面，直到立体图形完成。" },
+    en: { title: "Check the faces", body: "Watch the list of folded faces until the 3D solid is complete." }
+  },
+  "goal-shape-drawer": {
+    bm: { title: "Bina bentuk 2D dan 3D", body: "Belajar melukis bentuk tertutup pada grid dan menyambungkannya menjadi model 3D." },
+    zh: { title: "构造二维与三维图形", body: "学习在格点上画出封闭图形，再把它连接成立体模型。" },
+    en: { title: "Build 2D and 3D shapes", body: "Learn to draw a closed shape on the grid and connect it into a 3D model." }
+  },
+  "drawer-draw": {
+    bm: { title: "Lukis pada grid", body: "Klik titik satu demi satu atau tahan dan seret melalui beberapa titik." },
+    zh: { title: "在格点上绘图", body: "逐点点击，或按住并拖过多个格点。" },
+    en: { title: "Draw on the grid", body: "Click points one by one, or hold and drag across several points." }
+  },
+  "drawer-close": {
+    bm: { title: "Tutup bentuk", body: "Selepas memilih sekurang-kurangnya tiga titik, tekan Tutup bentuk." },
+    zh: { title: "闭合图形", body: "选择至少三个点后，点击闭合图形。" },
+    en: { title: "Close the shape", body: "After choosing at least three points, tap Close shape." }
+  },
+  "drawer-connect": {
+    bm: { title: "Sambung menjadi 3D", body: "Tekan Sambung jadi 3D untuk menambah kedalaman pada bentuk tertutup." },
+    zh: { title: "连接成立体", body: "点击连接成立体，为封闭图形加上深度。" },
+    en: { title: "Connect it in 3D", body: "Tap Connect as 3D to add depth to the closed shape." }
+  },
+  "drawer-inspect": {
+    bm: { title: "Periksa hasil", body: "Lihat bilangan sisi; selepas disambung, seret model dan periksa muka, tepi serta bucu." },
+    zh: { title: "检查结果", body: "查看边数；连接后拖动模型，并检查面、棱和顶点。" },
+    en: { title: "Inspect your result", body: "Check the side count; after connecting, drag the model and inspect its faces, edges and vertices." }
+  }
+};
+
 const SHAPES = [
-  { id: "triangle", icon: "🔺", name: ml("Segi tiga", "三角形", "Triangle"), kind: "2d", sides: 3, corners: 3 },
-  { id: "square", icon: "🟨", name: ml("Segi empat sama", "正方形", "Square"), kind: "2d", sides: 4, corners: 4 },
-  { id: "rectangle", icon: "▭", name: ml("Segi empat tepat", "长方形", "Rectangle"), kind: "2d", sides: 4, corners: 4 },
-  { id: "circle", icon: "🟠", name: ml("Bulatan", "圆", "Circle"), kind: "2d", sides: 1, corners: 0, curved: true },
-  { id: "cube", icon: "🧊", name: ml("Kubus", "正方体", "Cube"), kind: "3d", faces: 6, edges: 12, vertices: 8 },
-  { id: "cuboid", icon: "📦", name: ml("Kuboid", "长方体", "Cuboid"), kind: "3d", faces: 6, edges: 12, vertices: 8 },
-  { id: "pyramid", icon: "🔺", name: ml("Piramid", "棱锥", "Pyramid"), kind: "3d", faces: 5, edges: 8, vertices: 5 },
-  { id: "cylinder", icon: "🥫", name: ml("Silinder", "圆柱体", "Cylinder"), kind: "3d", faces: 3, edges: 2, vertices: 0 },
-  { id: "cone", icon: "🍦", name: ml("Kon", "圆锥体", "Cone"), kind: "3d", faces: 2, edges: 1, vertices: 1 },
-  { id: "sphere", icon: "⚽", name: ml("Sfera", "球体", "Sphere"), kind: "3d", faces: 1, edges: 0, vertices: 0 }
+  { id: "triangle", icon: "assets/shape-icons/triangle.png", name: ml("Segi tiga", "三角形", "Triangle"), kind: "2d", sides: 3, corners: 3 },
+  { id: "square", icon: "assets/shape-icons/square.png", name: ml("Segi empat sama", "正方形", "Square"), kind: "2d", sides: 4, corners: 4 },
+  { id: "rectangle", icon: "assets/shape-icons/rectangle.png", name: ml("Segi empat tepat", "长方形", "Rectangle"), kind: "2d", sides: 4, corners: 4 },
+  { id: "circle", icon: "assets/shape-icons/circle.png", name: ml("Bulatan", "圆", "Circle"), kind: "2d", sides: 1, corners: 0, curved: true },
+  { id: "cube", icon: "assets/shape-icons/cube.png", name: ml("Kubus", "正方体", "Cube"), kind: "3d", faces: 6, edges: 12, vertices: 8 },
+  { id: "cuboid", icon: "assets/shape-icons/cuboid.png", name: ml("Kuboid", "长方体", "Cuboid"), kind: "3d", faces: 6, edges: 12, vertices: 8 },
+  { id: "pyramid", icon: "assets/shape-icons/pyramid.png", name: ml("Piramid", "棱锥", "Pyramid"), kind: "3d", faces: 5, edges: 8, vertices: 5 },
+  { id: "cylinder", icon: "assets/shape-icons/cylinder.png", name: ml("Silinder", "圆柱体", "Cylinder"), kind: "3d", faces: 3, edges: 2, vertices: 0 },
+  { id: "cone", icon: "assets/shape-icons/cone.png", name: ml("Kon", "圆锥体", "Cone"), kind: "3d", faces: 2, edges: 1, vertices: 1 },
+  { id: "sphere", icon: "assets/shape-icons/sphere.png", name: ml("Sfera", "球体", "Sphere"), kind: "3d", faces: 1, edges: 0, vertices: 0 }
 ];
+
+function shapeChoiceIcon(shape) {
+  return `<img class="shape-choice-icon" src="${shape.icon}" alt="" aria-hidden="true" draggable="false">`;
+}
 
 const PATTERN_TOKENS = [
   { id: "circle", icon: "●", color: "#ffd778" },
-  { id: "triangle", icon: "▲", color: "#73c7b5" },
+  { id: "triangle", icon: "▲", color: "#f6a437" },
   { id: "square", icon: "■", color: "#ab96e5" },
   { id: "star", icon: "★", color: "#ff9f8f" }
 ];
@@ -263,6 +352,9 @@ const NET_SOLIDS = [
 
 const els = {
   sound: document.querySelector("#soundToggle"),
+  soundIcon: document.querySelector("#soundIcon"),
+  fullscreen: document.querySelector("#fullscreenToggle"),
+  activityTabs: document.querySelector("#activityTabs"),
   grade: document.querySelector("#gradeSelect"),
   activity: document.querySelector("#activitySelect"),
   sideTitle: document.querySelector("#sideTitle"),
@@ -287,6 +379,9 @@ const subtitle = document.querySelector('[data-i18n="subtitle"]');
 
 const state = { lang: "ms", grade: configuredGrade || 2, mode: "shape", activity: "shapeExplorer", sound: true, tool: null };
 let audioContext;
+let operationGuide = null;
+let activeGuideActivity = null;
+let configuredGuideActivity = null;
 
 const loc = value => typeof value === "string" ? value : value[state.lang];
 const tr = key => loc(I18N[key]);
@@ -300,10 +395,87 @@ const fixedGradeName = () => {
   return `Matematik Tahun ${state.grade}`;
 };
 const fixedSubtitle = () => {
-  if (state.lang === "zh") return `配合 SK 与 SJKC 数学${["", "", "二", "三", "四", "五", "六"][state.grade]}年级课本的操作工具。`;
-  if (state.lang === "en") return `Hands-on Math Year ${state.grade} tools aligned to SK and SJKC textbooks.`;
-  return `Alat manipulatif Matematik Tahun ${state.grade} berpandukan buku teks SK dan SJKC.`;
+  if (state.lang === "zh") return "探索、折叠和构造图形。";
+  if (state.lang === "en") return "Explore, fold and build shapes.";
+  return "Teroka, lipat dan bina bentuk.";
 };
+
+const guideLanguage = () => state.lang === "ms" ? "bm" : state.lang;
+
+function guideNarration(key) {
+  return {
+    bm: new URL(`assets/operation-guide/voices/bm/contextual/${key}.mp3`, document.baseURI).href,
+    zh: new URL(`assets/operation-guide/voices/zh/contextual/${key}.mp3`, document.baseURI).href,
+    en: new URL(`assets/operation-guide/voices/en/contextual/${key}.mp3`, document.baseURI).href
+  };
+}
+
+function geometryGuideStep(activity, key, target) {
+  return {
+    id: `${activity}-${key}`,
+    target,
+    content: GEOMETRY_GUIDE_COPY[key],
+    narration: guideNarration(key)
+  };
+}
+
+function getActivityGuideSteps(activity) {
+  const activityTarget = `.activity-tab[data-activity="${activity}"]`;
+  const flows = {
+    shapeExplorer: [
+      geometryGuideStep(activity, "goal-shape-explorer", activityTarget),
+      geometryGuideStep(activity, "shape-choose", "#controlArea .choice-row"),
+      geometryGuideStep(activity, "shape-move", "#visualStage"),
+      geometryGuideStep(activity, "shape-properties", "#visualStage .property-panel"),
+      geometryGuideStep(activity, "shape-summary", "#visualStage .property-explanation")
+    ],
+    netBuilder: [
+      geometryGuideStep(activity, "goal-net-builder", activityTarget),
+      geometryGuideStep(activity, "net-choose", "#controlArea .net-shape-choices"),
+      geometryGuideStep(activity, "net-compare", "#visualStage"),
+      geometryGuideStep(activity, "net-fold", "#nextFold"),
+      geometryGuideStep(activity, "net-check", "#liveSummary")
+    ],
+    shapeDrawer: [
+      geometryGuideStep(activity, "goal-shape-drawer", activityTarget),
+      geometryGuideStep(activity, "drawer-draw", "#drawBoard"),
+      geometryGuideStep(activity, "drawer-close", "#closeDraw"),
+      geometryGuideStep(activity, "drawer-connect", "#toggleDrawSolid"),
+      geometryGuideStep(activity, "drawer-inspect", "#liveSummary")
+    ]
+  };
+  return flows[activity] || flows.shapeExplorer;
+}
+
+function refreshOperationGuideSteps() {
+  if (!operationGuide || activeGuideActivity || configuredGuideActivity === state.activity) return;
+  operationGuide.configure({ steps: getActivityGuideSteps(state.activity) });
+  configuredGuideActivity = state.activity;
+}
+
+async function initOperationGuide() {
+  try {
+    const sharedGuide = await window.EdCloudOperationGuideReady;
+    if (!sharedGuide?.mount) return;
+    operationGuide = sharedGuide.mount({
+      guideId: "math-y2-smart-geometry-lab",
+      language: guideLanguage(),
+      soundEnabled: state.sound,
+      dockOffset: { right: 16, bottom: 20, mobileRight: 10, mobileBottom: 20 },
+      steps: getActivityGuideSteps(state.activity)
+    });
+    configuredGuideActivity = state.activity;
+    operationGuide.addEventListener("guide-started", () => {
+      activeGuideActivity = state.activity;
+    });
+    operationGuide.addEventListener("guide-closed", () => {
+      activeGuideActivity = null;
+      refreshOperationGuideSteps();
+    });
+  } catch (error) {
+    console.warn("Shared operation guide failed to initialize.", error);
+  }
+}
 
 function beep(kind = "tap") {
   if (!state.sound) return;
@@ -327,13 +499,89 @@ function beep(kind = "tap") {
   });
 }
 
+function updateSoundButton() {
+  const label = tr(state.sound ? "soundOn" : "soundOff");
+  els.soundIcon.src = state.sound ? "assets/ui-icons/sound-on.png" : "assets/ui-icons/sound-off.png";
+  els.sound.querySelector("span:last-child").textContent = label;
+  els.sound.setAttribute("aria-pressed", String(state.sound));
+  els.sound.setAttribute("aria-label", label);
+}
+
+function updateFullscreenButton() {
+  if (!els.fullscreen) return;
+  const fullscreen = Boolean(document.fullscreenElement);
+  const label = tr(fullscreen ? "exitFullscreen" : "fullscreen");
+  els.fullscreen.querySelector("span:last-child").textContent = label;
+  els.fullscreen.setAttribute("aria-pressed", String(fullscreen));
+  els.fullscreen.setAttribute("aria-label", label);
+}
+
+function currentShapeCanvas() {
+  return els.stage.querySelector(".shape-canvas");
+}
+
+function isShapeCanvasExpanded() {
+  const canvas = currentShapeCanvas();
+  return Boolean(canvas && (document.fullscreenElement === canvas || canvas.classList.contains("is-viewport-fullscreen")));
+}
+
+function updateShapeCanvasFullscreenButton() {
+  const button = document.querySelector("#shapeFullscreenToggle");
+  if (!button) return;
+  const expanded = isShapeCanvasExpanded();
+  const label = tr(expanded ? "shapeExitFullscreen" : "shapeFullscreen");
+  button.setAttribute("aria-pressed", String(expanded));
+  button.setAttribute("aria-label", label);
+  button.setAttribute("title", label);
+  button.querySelector("span:first-child").textContent = expanded ? "×" : "⛶";
+  button.querySelector("span:last-child").textContent = label;
+}
+
+function setShapeCanvasFallback(expanded) {
+  currentShapeCanvas()?.classList.toggle("is-viewport-fullscreen", expanded);
+  document.body.classList.toggle("shape-canvas-expanded", expanded);
+  updateShapeCanvasFullscreenButton();
+  if (expanded) window.requestAnimationFrame(() => document.querySelector("#shapeFullscreenToggle")?.focus());
+}
+
+async function toggleShapeCanvasFullscreen() {
+  const canvas = currentShapeCanvas();
+  if (!canvas) return;
+  if (canvas.classList.contains("is-viewport-fullscreen")) {
+    setShapeCanvasFallback(false);
+    beep("tap");
+    return;
+  }
+  if (document.fullscreenElement === canvas) {
+    await document.exitFullscreen();
+    beep("tap");
+    return;
+  }
+  if (typeof canvas.requestFullscreen === "function") {
+    try {
+      await canvas.requestFullscreen();
+      beep("tap");
+      return;
+    } catch (_) {
+      // iOS WebViews and embedded browsers may expose but reject this API.
+    }
+  }
+  setShapeCanvasFallback(true);
+  beep("tap");
+}
+
 function applyStaticLanguage() {
   document.documentElement.lang = state.lang === "zh" ? "zh-Hans" : state.lang;
   document.querySelectorAll("[data-i18n]").forEach(node => {
     if (I18N[node.dataset.i18n]) node.textContent = tr(node.dataset.i18n);
   });
-  els.sound.querySelector("span:last-child").textContent = tr(state.sound ? "soundOn" : "soundOff");
-  document.querySelectorAll("[data-lang]").forEach(button => button.classList.toggle("active", button.dataset.lang === state.lang));
+  updateSoundButton();
+  updateFullscreenButton();
+  document.querySelectorAll("[data-lang]").forEach(button => {
+    const active = button.dataset.lang === state.lang;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
   Array.from(els.grade.options).forEach(option => option.textContent = gradeName(Number(option.value)));
   els.grade.value = String(state.grade);
   gradeLabel.hidden = Boolean(configuredGrade);
@@ -349,6 +597,7 @@ function setChallenge(title, subtitle) {
 }
 
 function setSummary(html, type = "neutral") {
+  els.summary.hidden = false;
   els.summary.className = "feedback " + type;
   els.summary.innerHTML = html;
 }
@@ -409,6 +658,14 @@ function availableModes() {
   return Object.keys(MODES).filter(mode => (PLAN[state.grade][mode] || []).length);
 }
 
+function updateActivityTabs() {
+  document.querySelectorAll(".activity-tab[data-activity]").forEach(button => {
+    const active = button.dataset.activity === state.activity;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
+}
+
 function refreshNavigation(options = {}) {
   const modes = availableModes();
   if (!modes.includes(state.mode)) state.mode = modes[0];
@@ -425,6 +682,7 @@ function refreshNavigation(options = {}) {
   els.activity.value = state.activity;
   if (!options.keepTool || !state.tool) state.tool = factories[state.activity]();
   updateMeta();
+  updateActivityTabs();
 }
 
 function updateMeta() {
@@ -438,8 +696,12 @@ function updateMeta() {
 }
 
 function chooseActivity(id) {
+  if (activeGuideActivity || id === state.activity || !factories[id]) return;
+  if (currentShapeCanvas()?.classList.contains("is-viewport-fullscreen")) setShapeCanvasFallback(false);
   state.activity = id;
   state.tool = factories[id]();
+  els.activity.value = id;
+  updateActivityTabs();
   updateMeta();
   renderTool();
 }
@@ -513,6 +775,27 @@ function randomizeCurrent() {
   renderTool();
 }
 
+function showGeometryCelebration(answerText) {
+  const celebration = window.EdCloudCorrectCelebration;
+  if (typeof celebration?.show !== "function") {
+    beep("done");
+    return;
+  }
+  celebration.show({
+    animation: "random",
+    language: guideLanguage(),
+    title: loc(ml("Hebat!", "完成了！", "Great job!")),
+    message: loc(ml("Bentangan kamu sudah menjadi bentuk 3D.", "你已经把展开图折成立体图形了。", "You folded the net into a 3D solid.")),
+    answerLabel: loc(ml("Bentuk siap", "完成的图形", "Completed shape")),
+    answerText,
+    reviewText: loc(ml("Lihat model", "查看模型", "View model")),
+    nextText: tr("newExample"),
+    soundEnabled: state.sound,
+    onReview: () => els.stage.focus?.({ preventScroll: true }),
+    onNext: randomizeCurrent
+  });
+}
+
 function renderTool() {
   updateMeta();
   renderGuide();
@@ -534,6 +817,7 @@ function renderTool() {
     circleLab: renderCircleLab
   };
   renderers[state.activity]();
+  refreshOperationGuideSteps();
 }
 
 function shapeSvg(shape, rotation, property = 0) {
@@ -859,12 +1143,13 @@ function renderShapeExplorer() {
       ? loc(ml("Seret grid pada sfera. Bentuk luar kekal bulat kerana sfera sama dari setiap arah.", "拖动球面网格观察旋转；球体从每个方向看，外形仍然是圆的。", "Drag the grid to rotate it; a sphere still looks round from every direction."))
       : loc(ml("Seret terus pada model untuk melihat muka hadapan, belakang, atas dan bawah.", "直接拖动模型，查看前、后、上、下各个面。", "Drag the model itself to inspect its front, back, top and bottom."))
     : loc(ml("Putar bentuk dan sentuh kad sifat untuk memerhati cirinya.", "旋转图形并点击特征卡进行观察。", "Rotate the shape and tap a property card to inspect it.")));
-  els.stage.innerHTML = "<div class=\"shape-explorer\"><div class=\"shape-canvas\">" + picture + "</div><div class=\"property-panel\">" + properties.map((item, index) => "<button class=\"property-card" + (t.property === index ? " active" : "") + "\" type=\"button\" data-property=\"" + index + "\" aria-pressed=\"" + (t.property === index) + "\"><span>" + item[0] + "</span><strong>" + item[1] + "</strong></button>").join("") + "<div class=\"property-explanation\">" + explanation + "</div></div></div>";
+  const fullscreenButton = "<button id=\"shapeFullscreenToggle\" class=\"shape-fullscreen-toggle\" type=\"button\" aria-pressed=\"false\"><span aria-hidden=\"true\">⛶</span><span>" + tr("shapeFullscreen") + "</span></button>";
+  els.stage.innerHTML = "<div class=\"shape-explorer\"><div class=\"shape-canvas\">" + fullscreenButton + picture + "</div><div class=\"property-panel\">" + properties.map((item, index) => "<button class=\"property-card" + (t.property === index ? " active" : "") + "\" type=\"button\" data-property=\"" + index + "\" aria-pressed=\"" + (t.property === index) + "\"><span>" + item[0] + "</span><strong>" + item[1] + "</strong></button>").join("") + "</div><div class=\"property-explanation\" role=\"status\" aria-live=\"polite\">" + explanation + "</div></div>";
   const viewControl = shape.kind === "3d"
     ? "<div class=\"board-actions\"><button id=\"reset3dView\" class=\"secondary-button compact\" type=\"button\">⌂ " + loc(ml("Pandangan asal", "恢复初始视角", "Reset view")) + "</button>" + randomButton() + "</div>"
     : "<div class=\"range-grid\" style=\"margin-top:10px\">" + rangeControl("shapeRotation", loc(ml("Putaran", "旋转", "Rotation")), -30, 30, 1, t.rotation, "°") + "</div><div class=\"board-actions\">" + randomButton() + "</div>";
-  els.controls.innerHTML = "<div class=\"choice-row\">" + SHAPES.map(item => "<button type=\"button\" class=\"choice-chip" + (item.id === t.shape ? " active" : "") + "\" data-shape=\"" + item.id + "\">" + item.icon + " " + loc(item.name) + "</button>").join("") + "</div>" + viewControl;
-  setSummary(explanation, t.property === 0 && t.selectedFace ? "success" : "neutral");
+  els.controls.innerHTML = "<div class=\"choice-row\">" + SHAPES.map(item => "<button type=\"button\" class=\"choice-chip" + (item.id === t.shape ? " active" : "") + "\" data-shape=\"" + item.id + "\">" + shapeChoiceIcon(item) + "<span>" + loc(item.name) + "</span></button>").join("") + "</div>" + viewControl;
+  els.summary.hidden = true;
   document.querySelectorAll("[data-shape]").forEach(button => button.addEventListener("click", () => {
     t.shape = button.dataset.shape;
     t.property = 0;
@@ -875,6 +1160,8 @@ function renderShapeExplorer() {
     renderTool();
   }));
   document.querySelectorAll("[data-property]").forEach(button => button.addEventListener("click", () => { t.property = Number(button.dataset.property); t.selectedFace = null; renderTool(); }));
+  document.querySelector("#shapeFullscreenToggle").addEventListener("click", toggleShapeCanvasFullscreen);
+  updateShapeCanvasFullscreenButton();
   const rotation = document.querySelector("#shapeRotation");
   if (rotation) rotation.addEventListener("input", event => { t.rotation = Number(event.target.value); renderTool(); });
   const resetView = document.querySelector("#reset3dView");
@@ -1076,14 +1363,19 @@ function renderNetBuilder() {
   els.stage.innerHTML = "<div class=\"net-board\"><div class=\"net-panel\"><div class=\"panel-caption\">" + loc(ml("Bentangan rata", "平面展开图", "Flat net")) + " · " + shapeName + "</div><svg class=\"geometry-svg net-flat-svg\" viewBox=\"0 0 310 260\">" + netMarkup + "</svg></div><div class=\"net-panel\"><div class=\"panel-caption\">" + loc(ml("Binaan 3D · Langkah ", "立体构造 · 第 ", "3D build · Step ")) + t.step + "/" + maxStep + "</div>" + modelMarkup + "</div></div>";
   els.controls.innerHTML = "<div class=\"choice-row net-shape-choices\">" + NET_SOLIDS.map(item => {
     const itemShape = SHAPES.find(shapeItem => shapeItem.id === item.id);
-    return "<button type=\"button\" class=\"choice-chip" + (item.id === t.shape ? " active" : "") + "\" data-net-shape=\"" + item.id + "\">" + itemShape.icon + " " + loc(itemShape.name) + "</button>";
+    return "<button type=\"button\" class=\"choice-chip" + (item.id === t.shape ? " active" : "") + "\" data-net-shape=\"" + item.id + "\">" + shapeChoiceIcon(itemShape) + "<span>" + loc(itemShape.name) + "</span></button>";
   }).join("") + "</div><div class=\"range-grid\" style=\"margin-top:10px\">" + rangeControl("foldStep", loc(ml("Langkah lipatan", "折合步骤", "Folding step")), 0, maxStep, 1, t.step, "/" + maxStep) + "</div><div class=\"board-actions\"><button id=\"previousFold\" class=\"secondary-button compact\" type=\"button\" " + (t.step === 0 ? "disabled" : "") + ">← " + loc(ml("Langkah sebelumnya", "上一步", "Previous step")) + "</button><button id=\"nextFold\" class=\"primary-button compact\" type=\"button\" " + (t.step === maxStep ? "disabled" : "") + ">" + loc(ml("Langkah seterusnya", "下一步", "Next step")) + " →</button><button id=\"resetNetView\" class=\"secondary-button compact\" type=\"button\">⌂ " + loc(ml("Pandangan asal", "恢复视角", "Reset view")) + "</button>" + randomButton("newNet") + "</div>";
   const foldedText = t.step === 0 ? "—" : definition.foldOrder.slice(0, t.step).join(", ");
   setSummary(loc(ml("Muka yang telah dilipat", "已经折起的面", "Folded faces")) + ": <strong>" + foldedText + "</strong>" + (t.step === maxStep ? " · ✓ " + shapeName + " " + loc(ml("lengkap", "完成", "complete")) : ""), t.step === maxStep ? "success" : "neutral");
   document.querySelectorAll("[data-net-shape]").forEach(button => button.addEventListener("click", () => { t.shape = button.dataset.netShape; t.step = 0; t.viewX = -18; t.viewY = 30; renderTool(); }));
   document.querySelector("#foldStep").addEventListener("input", event => { t.step = Number(event.target.value); renderTool(); });
   document.querySelector("#previousFold").addEventListener("click", () => { t.step = clamp(t.step - 1, 0, maxStep); renderTool(); });
-  document.querySelector("#nextFold").addEventListener("click", () => { t.step = clamp(t.step + 1, 0, maxStep); renderTool(); });
+  document.querySelector("#nextFold").addEventListener("click", () => {
+    const completed = t.step === maxStep - 1;
+    t.step = clamp(t.step + 1, 0, maxStep);
+    renderTool();
+    if (completed) window.requestAnimationFrame(() => showGeometryCelebration(shapeName));
+  });
   document.querySelector("#resetNetView").addEventListener("click", () => { t.viewX = -18; t.viewY = 30; renderTool(); });
   document.querySelector("#newNet").addEventListener("click", randomizeCurrent);
   bindNetFoldDrag(t, shape, definition);
@@ -1592,7 +1884,7 @@ function lineDiagram(t) {
   const angleMark = relation.type === "parallel"
     ? ""
     : "<path id=\"lineAngleArc\" data-start-angle=\"" + arcStartAngle + "\" data-end-angle=\"" + arcEndAngle + "\" d=\"M" + arcStart[0].toFixed(1) + " " + arcStart[1].toFixed(1) + " A45 45 0 0 " + sweep + " " + arcEnd[0].toFixed(1) + " " + arcEnd[1].toFixed(1) + "\" fill=\"none\" stroke=\"#ffbd3f\" stroke-width=\"7\" stroke-linecap=\"round\"/><text class=\"diagram-label accent angle-between-label\" x=\"" + arcLabel[0].toFixed(1) + "\" y=\"" + arcLabel[1].toFixed(1) + "\" text-anchor=\"middle\">" + relation.angle + "°</text>";
-  const markup = "<line x1=\"" + a[0] + "\" y1=\"" + a[1] + "\" x2=\"" + a[2] + "\" y2=\"" + a[3] + "\" stroke=\"#0d806b\" stroke-width=\"8\" stroke-linecap=\"round\"/><line x1=\"" + b[0] + "\" y1=\"" + b[1] + "\" x2=\"" + b[2] + "\" y2=\"" + b[3] + "\" stroke=\"#8062c6\" stroke-width=\"8\" stroke-linecap=\"round\"/>" + angleMark + "<text class=\"diagram-label accent\" x=\"" + (aHandle[2] + 17).toFixed(1) + "\" y=\"" + (aHandle[3] - 17).toFixed(1) + "\">A · " + t.angleA + "°</text><text class=\"diagram-label\" x=\"" + (bHandle[2] + 17).toFixed(1) + "\" y=\"" + (bHandle[3] - 17).toFixed(1) + "\">B · " + t.angleB + "°</text><circle class=\"line-drag-handle handle-a\" data-line-handle=\"A\" cx=\"" + aHandle[2] + "\" cy=\"" + aHandle[3] + "\" r=\"14\"/><circle class=\"line-drag-handle handle-b\" data-line-handle=\"B\" cx=\"" + bHandle[2] + "\" cy=\"" + bHandle[3] + "\" r=\"14\"/>" + (relation.type === "parallel" ? "" : "<circle cx=\"320\" cy=\"150\" r=\"8\" fill=\"#ffbd3f\" stroke=\"#6d4a1e\" stroke-width=\"3\"/>");
+  const markup = "<line x1=\"" + a[0] + "\" y1=\"" + a[1] + "\" x2=\"" + a[2] + "\" y2=\"" + a[3] + "\" stroke=\"#bd4d08\" stroke-width=\"8\" stroke-linecap=\"round\"/><line x1=\"" + b[0] + "\" y1=\"" + b[1] + "\" x2=\"" + b[2] + "\" y2=\"" + b[3] + "\" stroke=\"#d86b21\" stroke-width=\"8\" stroke-linecap=\"round\"/>" + angleMark + "<text class=\"diagram-label accent\" x=\"" + (aHandle[2] + 17).toFixed(1) + "\" y=\"" + (aHandle[3] - 17).toFixed(1) + "\">A · " + t.angleA + "°</text><text class=\"diagram-label\" x=\"" + (bHandle[2] + 17).toFixed(1) + "\" y=\"" + (bHandle[3] - 17).toFixed(1) + "\">B · " + t.angleB + "°</text><circle class=\"line-drag-handle handle-a\" data-line-handle=\"A\" cx=\"" + aHandle[2] + "\" cy=\"" + aHandle[3] + "\" r=\"14\"/><circle class=\"line-drag-handle handle-b\" data-line-handle=\"B\" cx=\"" + bHandle[2] + "\" cy=\"" + bHandle[3] + "\" r=\"14\"/>" + (relation.type === "parallel" ? "" : "<circle cx=\"320\" cy=\"150\" r=\"8\" fill=\"#ffbd3f\" stroke=\"#6d4a1e\" stroke-width=\"3\"/>");
   return { markup, relation };
 }
 
@@ -1724,10 +2016,10 @@ function renderAreaLab() {
   const x = (420 - w) / 2;
   const y = (260 - h) / 2;
   const shape = isTriangle
-    ? "<polygon points=\"" + x + "," + (y + h) + " " + (x + w) + "," + (y + h) + " " + x + "," + y + "\" fill=\"rgba(19,139,117,.55)\" stroke=\"#075f4e\" stroke-width=\"4\"/><line x1=\"" + x + "\" y1=\"" + y + "\" x2=\"" + x + "\" y2=\"" + (y + h) + "\" stroke=\"#ba3f45\" stroke-width=\"4\"/><text class=\"diagram-label accent\" x=\"" + (x + w/2) + "\" y=\"" + (y + h - 10) + "\" text-anchor=\"middle\">" + loc(ml("tapak", "底", "base")) + " = " + t.width + " cm</text><text class=\"diagram-label accent\" x=\"" + (x + 10) + "\" y=\"" + (y + h/2) + "\" transform=\"rotate(-90 " + (x + 10) + " " + (y + h/2) + ")\" text-anchor=\"middle\">" + loc(ml("tinggi", "高", "height")) + " = " + t.height + " cm</text>"
+    ? "<polygon points=\"" + x + "," + (y + h) + " " + (x + w) + "," + (y + h) + " " + x + "," + y + "\" fill=\"rgba(245,133,31,.55)\" stroke=\"#7a350e\" stroke-width=\"4\"/><line x1=\"" + x + "\" y1=\"" + y + "\" x2=\"" + x + "\" y2=\"" + (y + h) + "\" stroke=\"#ba3f45\" stroke-width=\"4\"/><text class=\"diagram-label accent\" x=\"" + (x + w/2) + "\" y=\"" + (y + h - 10) + "\" text-anchor=\"middle\">" + loc(ml("tapak", "底", "base")) + " = " + t.width + " cm</text><text class=\"diagram-label accent\" x=\"" + (x + 10) + "\" y=\"" + (y + h/2) + "\" transform=\"rotate(-90 " + (x + 10) + " " + (y + h/2) + ")\" text-anchor=\"middle\">" + loc(ml("tinggi", "高", "height")) + " = " + t.height + " cm</text>"
     : "<rect x=\"" + x + "\" y=\"" + y + "\" width=\"" + w + "\" height=\"" + h + "\" fill=\"rgba(255,189,63,.58)\" stroke=\"#6d4a1e\" stroke-width=\"4\"/><text class=\"diagram-label\" x=\"" + (x + w/2) + "\" y=\"" + (y + h - 10) + "\" text-anchor=\"middle\">" + tr("width") + " = " + t.width + " cm</text><text class=\"diagram-label\" x=\"" + (x + 12) + "\" y=\"" + (y + h/2) + "\" transform=\"rotate(-90 " + (x + 12) + " " + (y + h/2) + ")\" text-anchor=\"middle\">" + tr("height") + " = " + t.height + " cm</text>";
   setChallenge(tr("area") + ": " + area + " cm²", isTriangle ? loc(ml("Segi tiga ialah separuh daripada segi empat dengan tapak dan tinggi yang sama.", "三角形是相同底和高的长方形的一半。", "A triangle is half a rectangle with the same base and height.")) : loc(ml("Kira petak satu sentimeter persegi.", "数一数每个一平方厘米的方格。", "Count the one-square-centimetre cells.")));
-  els.stage.innerHTML = "<div class=\"measure-board\"><svg class=\"geometry-svg area-board-svg\" viewBox=\"0 0 420 260\"><defs><pattern id=\"gridPattern\" width=\"" + unit.toFixed(2) + "\" height=\"" + unit.toFixed(2) + "\" patternUnits=\"userSpaceOnUse\"><path d=\"M" + unit.toFixed(2) + " 0H0V" + unit.toFixed(2) + "\" fill=\"none\" stroke=\"#b9d5d0\" stroke-width=\"1\"/></pattern></defs><rect x=\"0\" y=\"0\" width=\"420\" height=\"260\" fill=\"url(#gridPattern)\"/>" + shape + "</svg><div class=\"formula-card\"><span>" + tr("area") + "</span><strong>" + area + " cm²</strong><span>" + (isTriangle ? "½ × " : "") + t.width + " × " + t.height + "</span></div></div>";
+  els.stage.innerHTML = "<div class=\"measure-board\"><svg class=\"geometry-svg area-board-svg\" viewBox=\"0 0 420 260\"><defs><pattern id=\"gridPattern\" width=\"" + unit.toFixed(2) + "\" height=\"" + unit.toFixed(2) + "\" patternUnits=\"userSpaceOnUse\"><path d=\"M" + unit.toFixed(2) + " 0H0V" + unit.toFixed(2) + "\" fill=\"none\" stroke=\"#dfc99d\" stroke-width=\"1\"/></pattern></defs><rect x=\"0\" y=\"0\" width=\"420\" height=\"260\" fill=\"url(#gridPattern)\"/>" + shape + "</svg><div class=\"formula-card\"><span>" + tr("area") + "</span><strong>" + area + " cm²</strong><span>" + (isTriangle ? "½ × " : "") + t.width + " × " + t.height + "</span></div></div>";
   els.controls.innerHTML = "<div class=\"choice-row\"><button class=\"choice-chip" + (t.shape === "rectangle" ? " active" : "") + "\" data-area-shape=\"rectangle\" type=\"button\">▭ " + loc(ml("Segi empat tepat", "长方形", "Rectangle")) + "</button><button class=\"choice-chip" + (t.shape === "square" ? " active" : "") + "\" data-area-shape=\"square\" type=\"button\">□ " + loc(ml("Segi empat sama", "正方形", "Square")) + "</button><button class=\"choice-chip" + (t.shape === "triangle" ? " active" : "") + "\" data-area-shape=\"triangle\" type=\"button\">△ " + loc(ml("Segi tiga", "三角形", "Triangle")) + "</button></div><div class=\"range-grid\" style=\"margin-top:10px\">" + rangeControl("areaWidth", isTriangle ? loc(ml("Tapak", "底", "Base")) : tr("width"), 2, 12, 1, t.width, " cm") + (isSquare ? "" : rangeControl("areaHeight", tr("height"), 2, 8, 1, t.height, " cm")) + "</div><div class=\"board-actions\">" + randomButton() + "</div>";
   setSummary((isTriangle ? "½ × " : "") + t.width + " × " + t.height + " = <strong>" + area + " cm²</strong>");
   document.querySelectorAll("[data-area-shape]").forEach(button => button.addEventListener("click", () => {
@@ -1801,7 +2093,7 @@ function renderPolygonLab() {
   const angleLabels = labelPoints.map((point, index) => "<text class=\"diagram-label accent\" style=\"font-size:" + (t.sides > 6 ? 10 : 12) + "px\" x=\"" + point[0].toFixed(1) + "\" y=\"" + (point[1] + 4).toFixed(1) + "\" text-anchor=\"middle\">" + each.toFixed(each % 1 ? 1 : 0) + "°</text>").join("");
   const triangles = state.grade === 6 ? points.map((point, index) => {
     const next = points[(index + 1) % points.length];
-    return "<polygon points=\"250,150 " + point.join(",") + " " + next.join(",") + "\" fill=\"" + (index % 2 ? "rgba(128,98,198,.16)" : "rgba(19,139,117,.16)") + "\" stroke=\"#9e8a68\" stroke-width=\"1\"/>";
+    return "<polygon points=\"250,150 " + point.join(",") + " " + next.join(",") + "\" fill=\"" + (index % 2 ? "rgba(128,98,198,.16)" : "rgba(245,133,31,.16)") + "\" stroke=\"#9e8a68\" stroke-width=\"1\"/>";
   }).join("") : "";
   setChallenge(t.sides + " " + tr("sides") + " · " + each.toFixed(each % 1 ? 1 : 0) + "°", state.grade === 6 ? loc(ml("Garis dari satu titik membahagikan poligon kepada segi tiga.", "从一个顶点画出的线把多边形分成三角形。", "Lines from one vertex divide the polygon into triangles.")) : loc(ml("Semua sudut pedalaman poligon sekata adalah sama.", "正多边形的所有内角都相等。", "All interior angles of a regular polygon are equal.")));
   els.stage.innerHTML = "<div class=\"polygon-wrap\"><svg class=\"geometry-svg\" viewBox=\"0 0 500 300\">" + triangles + "<polygon class=\"shape-fill\" points=\"" + pointsAttr(points) + "\" fill-opacity=\".62\"/>" + angleLabels + "<circle cx=\"250\" cy=\"150\" r=\"5\" fill=\"#ba3f45\"/><text class=\"diagram-label\" x=\"250\" y=\"170\" text-anchor=\"middle\">" + t.sides + " " + tr("sides") + "</text></svg><div class=\"metric-row\">" + metric(tr("sides"), t.sides) + metric(loc(ml("Jumlah sudut", "内角和", "Angle sum")), sum + "°") + metric(loc(ml("Setiap sudut", "每个内角", "Each angle")), each.toFixed(each % 1 ? 1 : 0) + "°", true) + "</div></div>";
@@ -2019,11 +2311,8 @@ function applyTeacherSettings() {
   renderTool();
 }
 
-document.querySelectorAll("[data-mode]").forEach(button => button.addEventListener("click", () => {
-  if (button.disabled) return;
-  state.mode = button.dataset.mode;
-  refreshNavigation();
-  renderTool();
+document.querySelectorAll(".activity-tab[data-activity]").forEach(button => button.addEventListener("click", () => {
+  chooseActivity(button.dataset.activity);
 }));
 
 els.grade.addEventListener("change", () => {
@@ -2034,12 +2323,19 @@ els.grade.addEventListener("change", () => {
 });
 
 els.activity.addEventListener("change", () => chooseActivity(els.activity.value));
-els.reset.addEventListener("click", () => { state.tool = factories[state.activity](); renderTool(); });
-els.teacher.addEventListener("click", openTeacherDialog);
+els.reset.addEventListener("click", () => {
+  if (activeGuideActivity) return;
+  state.tool = factories[state.activity]();
+  renderTool();
+});
+els.teacher.addEventListener("click", () => {
+  if (!activeGuideActivity) openTeacherDialog();
+});
 els.useTeacher.addEventListener("click", applyTeacherSettings);
 
 document.querySelectorAll("[data-lang]").forEach(button => button.addEventListener("click", () => {
   state.lang = button.dataset.lang;
+  operationGuide?.setLanguage(guideLanguage());
   applyStaticLanguage();
   refreshNavigation({ keepActivity: true, keepTool: true });
   renderTool();
@@ -2047,10 +2343,32 @@ document.querySelectorAll("[data-lang]").forEach(button => button.addEventListen
 
 els.sound.addEventListener("click", () => {
   state.sound = !state.sound;
-  els.sound.setAttribute("aria-pressed", String(state.sound));
-  els.sound.querySelector("span:first-child").textContent = state.sound ? "🔊" : "🔇";
+  operationGuide?.setSoundEnabled(state.sound);
   applyStaticLanguage();
   if (state.sound) beep("done");
+});
+
+if (els.fullscreen) {
+  els.fullscreen.hidden = !document.fullscreenEnabled;
+  els.fullscreen.addEventListener("click", async () => {
+    try {
+      if (document.fullscreenElement) await document.exitFullscreen();
+      else await document.documentElement.requestFullscreen();
+      beep("tap");
+    } catch (error) {
+      els.fullscreen.title = error instanceof Error ? error.message : tr("fullscreen");
+    }
+  });
+  document.addEventListener("fullscreenchange", () => {
+    updateFullscreenButton();
+    updateShapeCanvasFullscreenButton();
+  });
+}
+
+document.addEventListener("keydown", event => {
+  if (event.key !== "Escape" || !currentShapeCanvas()?.classList.contains("is-viewport-fullscreen")) return;
+  event.preventDefault();
+  setShapeCanvasFallback(false);
 });
 
 document.addEventListener("pointerdown", event => {
@@ -2093,3 +2411,4 @@ if (configuredGrade) document.body.classList.add("fixed-grade");
 applyStaticLanguage();
 refreshNavigation();
 renderTool();
+initOperationGuide();
