@@ -73,7 +73,7 @@ const ACTIVITIES = {
   netBuilder: {
     label: ml("Pelipat bentangan", "立体图形展开图", "Net folder"),
     scope: ml("Tahun 2 · Bentangan bentuk 3D", "二年级 · 立体图形展开图", "Year 2 · Nets of 3D shapes"),
-    tip: ml("Pilih bentuk 3D, lipat satu muka pada setiap langkah dan padankan nombornya.", "选择立体图形，每一步折起一个面，并对应各面的编号。", "Choose a solid, fold one face at each step and match its numbers.")
+    tip: ml("Perhatikan bentangan misteri, lipat setiap muka, kemudian teka bentuk 3D sebelum membuka jawapan.", "观察未知展开图，逐面折叠，并在揭晓答案前猜出立体图形。", "Study the mystery net, fold each face, then guess the 3D solid before revealing the answer.")
   },
   shapeDrawer: {
     label: ml("Papan lukis bentuk", "图形绘制板", "Shape drawing board"),
@@ -157,9 +157,9 @@ const GUIDES = {
     ml("Klik kad ciri supaya nombor dan warna muncul terus pada rajah.", "点击特征卡，让号码和颜色直接标在图中。", "Click a feature card to place numbers and colours directly on the diagram.")
   ],
   netBuilder: [
-    ml("Pilih kubus, kuboid, piramid atau silinder.", "选择正方体、长方体、棱锥或圆柱体。", "Choose a cube, cuboid, pyramid or cylinder."),
+    ml("Perhatikan bentangan misteri dan seret model untuk melihatnya dari arah berbeza.", "观察未知展开图，并拖动模型从不同方向查看。", "Study the mystery net and drag the model to view it from different directions."),
     ml("Tekan Langkah seterusnya untuk melipat satu muka.", "点击“下一步”，每次折起一个面。", "Press Next step to fold one face."),
-    ml("Seret model 3D dan padankan setiap nombor.", "拖动对应的 3D 模型，核对各面的编号。", "Drag the matching 3D model and check every number.")
+    ml("Selepas semua muka dilipat, buat tekaan dan tekan Buka jawapan.", "全部折好后，先说出你的猜测，再点击“揭晓答案”。", "After every face is folded, make a guess and press Reveal answer.")
   ],
   shapeDrawer: [
     ml("Klik titik satu demi satu atau tahan dan seret merentasi titik.", "逐点点击，或按住并拖过多个格点。", "Click points one by one, or hold and drag across them."),
@@ -255,29 +255,29 @@ const GEOMETRY_GUIDE_COPY = {
     en: { title: "Read the explanation", body: "Read the explanation below to understand the selected feature." }
   },
   "goal-net-builder": {
-    bm: { title: "Fahami bentangan", body: "Belajar bagaimana permukaan rata dilipat menjadi bentuk 3D dan bagaimana nombor mukanya sepadan." },
-    zh: { title: "认识展开图", body: "学习平面上的各个面怎样折成立体图形，并对应相同的面编号。" },
-    en: { title: "Understand nets", body: "Learn how flat faces fold into a 3D solid and how their face numbers match." }
+    bm: { title: "Fahami bentangan", body: "Kenali bagaimana setiap bahagian bentangan dilipat menjadi bentuk 3D sambil menjejaki nombornya." },
+    zh: { title: "认识展开图", body: "了解展开图的各部分怎样折成立体图形，并跟踪各部分的编号。" },
+    en: { title: "Understand nets", body: "Learn how each part of a net folds into a 3D solid while tracking its number." }
   },
   "net-choose": {
-    bm: { title: "Pilih bentuk 3D", body: "Pilih kubus, kuboid, piramid atau silinder." },
-    zh: { title: "选择立体图形", body: "选择正方体、长方体、棱锥或圆柱体。" },
-    en: { title: "Choose a solid", body: "Choose a cube, cuboid, pyramid or cylinder." }
+    bm: { title: "Perhatikan bentangan misteri", body: "Selepas panduan ditutup, seret model untuk memutarnya. Cari petunjuk pada bentuk dan nombor tanpa membuka jawapan." },
+    zh: { title: "观察未知展开图", body: "指南结束后，拖动模型进行旋转；从形状和编号中寻找线索，先不要揭晓答案。" },
+    en: { title: "Study the mystery net", body: "After the guide closes, drag the model to rotate it. Look for clues in its shape and numbers without revealing the answer." }
   },
   "net-compare": {
-    bm: { title: "Padankan kedua-duanya", body: "Bandingkan bentangan rata dengan binaan 3D dan cari nombor muka yang sama." },
-    zh: { title: "对照两个图形", body: "比较平面展开图和立体模型，找出相同的面编号。" },
-    en: { title: "Compare both views", body: "Compare the flat net with the 3D build and find the matching face numbers." }
+    bm: { title: "Semak langkah lipatan", body: "Peluncur ini menunjukkan langkah semasa. Selepas panduan ditutup, seretnya untuk melihat semula setiap lipatan." },
+    zh: { title: "查看折叠步骤", body: "滑杆会显示当前步骤。指南结束后，拖动它可前后查看每一次折叠。" },
+    en: { title: "Track the folding steps", body: "The slider shows the current step. After the guide closes, drag it to review each fold." }
   },
   "net-fold": {
-    bm: { title: "Lipat langkah demi langkah", body: "Tekan Langkah seterusnya untuk melipat satu muka pada satu masa." },
-    zh: { title: "逐步折叠", body: "点击下一步，每次折起一个面。" },
-    en: { title: "Fold step by step", body: "Tap Next step to fold one face at a time." }
+    bm: { title: "Lipat langkah demi langkah", body: "Selepas panduan ditutup, tekan Langkah seterusnya untuk melipat satu bahagian pada satu masa." },
+    zh: { title: "逐步折叠", body: "指南结束后，点击“下一步”，每次折起一个部分。" },
+    en: { title: "Fold step by step", body: "After the guide closes, press Next step to fold one part at a time." }
   },
   "net-check": {
-    bm: { title: "Semak muka", body: "Lihat senarai muka yang telah dilipat sehingga bentuk 3D lengkap." },
-    zh: { title: "检查各个面", body: "查看已经折起的面，直到立体图形完成。" },
-    en: { title: "Check the faces", body: "Watch the list of folded faces until the 3D solid is complete." }
+    bm: { title: "Teka dan buka jawapan", body: "Selepas lipatan lengkap, sebut tekaan kamu dahulu kemudian tekan Buka jawapan." },
+    zh: { title: "猜一猜再揭晓", body: "折叠完成后，先说出你的猜测，再点击“揭晓答案”。" },
+    en: { title: "Guess, then reveal", body: "When folding is complete, say your guess first and then press Reveal answer." }
   },
   "goal-shape-drawer": {
     bm: { title: "Bina bentuk 2D dan 3D", body: "Belajar melukis bentuk tertutup pada grid dan menyambungkannya menjadi model 3D." },
@@ -337,17 +337,11 @@ const SYMMETRY_STAMPS = [
   { id: "heart", icon: "♥", label: ml("Hati", "心形", "Heart") }
 ];
 
-const NETS = [
-  [[1,0],[0,1],[1,1],[2,1],[3,1],[1,2]],
-  [[0,0],[0,1],[1,1],[2,1],[2,2],[2,3]],
-  [[1,0],[0,1],[1,1],[2,1],[1,2],[1,3]]
-];
-
 const NET_SOLIDS = [
   { id: "cube", base: 1, foldOrder: [3,2,4,5,6] },
   { id: "cuboid", base: 1, foldOrder: [3,2,4,5,6] },
   { id: "pyramid", base: 5, foldOrder: [1,2,3,4] },
-  { id: "cylinder", base: 2, foldOrder: [1,3] }
+  { id: "cylinder", base: 2, foldOrder: [2,1,3] }
 ];
 
 const els = {
@@ -379,6 +373,7 @@ const subtitle = document.querySelector('[data-i18n="subtitle"]');
 
 const state = { lang: "ms", grade: configuredGrade || 2, mode: "shape", activity: "shapeExplorer", sound: true, tool: null };
 let audioContext;
+let activeDragSoundSession = null;
 let operationGuide = null;
 let activeGuideActivity = null;
 let configuredGuideActivity = null;
@@ -431,10 +426,10 @@ function getActivityGuideSteps(activity) {
     ],
     netBuilder: [
       geometryGuideStep(activity, "goal-net-builder", activityTarget),
-      geometryGuideStep(activity, "net-choose", "#controlArea .net-shape-choices"),
-      geometryGuideStep(activity, "net-compare", "#visualStage"),
+      geometryGuideStep(activity, "net-choose", "#netFold3d .polyhedron-fold-model, #netFold3d .cylinder-fold-model"),
+      geometryGuideStep(activity, "net-compare", "#foldStep"),
       geometryGuideStep(activity, "net-fold", "#nextFold"),
-      geometryGuideStep(activity, "net-check", "#liveSummary")
+      geometryGuideStep(activity, "net-check", "#revealNetAnswer")
     ],
     shapeDrawer: [
       geometryGuideStep(activity, "goal-shape-drawer", activityTarget),
@@ -477,26 +472,119 @@ async function initOperationGuide() {
   }
 }
 
-function beep(kind = "tap") {
-  if (!state.sound) return;
+function getAudioContext() {
+  if (!state.sound) return null;
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-  if (!AudioContextClass) return;
-  audioContext ||= new AudioContextClass();
+  if (!AudioContextClass) return null;
+  try {
+    if (!audioContext || audioContext.state === "closed") audioContext = new AudioContextClass();
+    if (audioContext.state !== "running") {
+      const resumeResult = audioContext.resume?.();
+      if (resumeResult && typeof resumeResult.catch === "function") resumeResult.catch(() => {});
+    }
+    return audioContext;
+  } catch (_) {
+    return null;
+  }
+}
+
+function beep(kind = "tap") {
+  const context = getAudioContext();
+  if (!context) return;
   const notes = kind === "done" ? [523, 659, 784] : kind === "soft" ? [360] : [460, 570];
   notes.forEach((frequency, index) => {
-    const oscillator = audioContext.createOscillator();
-    const gain = audioContext.createGain();
-    const start = audioContext.currentTime + index * .065;
+    const oscillator = context.createOscillator();
+    const gain = context.createGain();
+    const start = context.currentTime + index * .065;
     oscillator.frequency.value = frequency;
     oscillator.type = "sine";
     gain.gain.setValueAtTime(.0001, start);
     gain.gain.exponentialRampToValueAtTime(.055, start + .01);
     gain.gain.exponentialRampToValueAtTime(.0001, start + .09);
     oscillator.connect(gain);
-    gain.connect(audioContext.destination);
+    gain.connect(context.destination);
     oscillator.start(start);
     oscillator.stop(start + .11);
   });
+}
+
+function beginDragSound(startEvent, kind) {
+  activeDragSoundSession?.end();
+  const context = getAudioContext();
+  if (!context) return { move() {}, end() {} };
+  const oscillator = context.createOscillator();
+  const gain = context.createGain();
+  const pointerId = startEvent.pointerId;
+  let lastX = startEvent.clientX;
+  let lastY = startEvent.clientY;
+  let lastMoveAt = performance.now();
+  let lastPulseAt = -Infinity;
+  let travel = 0;
+  let pulseIndex = 0;
+  let ended = false;
+  let session;
+  oscillator.type = "triangle";
+  oscillator.frequency.value = 560;
+  gain.gain.setValueAtTime(.0001, context.currentTime);
+  oscillator.connect(gain);
+  gain.connect(context.destination);
+  oscillator.start();
+  document.dispatchEvent(new CustomEvent("edcloud-drag-sound", { detail: { phase: "start", kind } }));
+
+  const end = event => {
+    if (ended || (event && event.pointerId !== pointerId)) return;
+    ended = true;
+    const now = context.currentTime;
+    if (typeof gain.gain.cancelAndHoldAtTime === "function") gain.gain.cancelAndHoldAtTime(now);
+    else {
+      gain.gain.cancelScheduledValues(now);
+      gain.gain.setValueAtTime(Math.max(.0001, gain.gain.value), now);
+    }
+    gain.gain.exponentialRampToValueAtTime(.0001, now + .05);
+    oscillator.stop(now + .06);
+    oscillator.onended = () => {
+      oscillator.disconnect();
+      gain.disconnect();
+    };
+    if (activeDragSoundSession === session) activeDragSoundSession = null;
+    document.dispatchEvent(new CustomEvent("edcloud-drag-sound", { detail: { phase: "stop", kind } }));
+  };
+
+  session = {
+    move(event, changed = true) {
+      if (ended || event.pointerId !== pointerId) return;
+      if (!state.sound) {
+        end(event);
+        return;
+      }
+      const samples = event.getCoalescedEvents?.();
+      const point = samples?.length ? samples[samples.length - 1] : event;
+      const nowMs = performance.now();
+      const distance = Math.hypot(point.clientX - lastX, point.clientY - lastY);
+      const elapsed = Math.max(1, nowMs - lastMoveAt);
+      lastX = point.clientX;
+      lastY = point.clientY;
+      lastMoveAt = nowMs;
+      if (!changed) return;
+      travel += distance;
+      if (travel < 5 || nowMs - lastPulseAt < 80) return;
+      const speed = distance / elapsed;
+      const frequency = 520 + Math.min(180, speed * 95) + (pulseIndex % 3) * 24;
+      const now = context.currentTime;
+      oscillator.frequency.setTargetAtTime(frequency, now, .008);
+      gain.gain.cancelScheduledValues(now);
+      gain.gain.setValueAtTime(.0001, now);
+      gain.gain.linearRampToValueAtTime(.05, now + .006);
+      gain.gain.exponentialRampToValueAtTime(.0001, now + .075);
+      travel = 0;
+      lastPulseAt = nowMs;
+      pulseIndex += 1;
+      document.dispatchEvent(new CustomEvent("edcloud-drag-sound", { detail: { phase: "pulse", kind, frequency, contextState: context.state } }));
+    },
+    end
+  };
+  activeDragSoundSession = session;
+  return session;
 }
 
 function updateSoundButton() {
@@ -517,7 +605,11 @@ function updateFullscreenButton() {
 }
 
 function currentShapeCanvas() {
-  return els.stage.querySelector(".shape-canvas");
+  return els.stage.querySelector(".shape-fullscreen-canvas");
+}
+
+function shapeFullscreenButtonMarkup() {
+  return "<button id=\"shapeFullscreenToggle\" class=\"shape-fullscreen-toggle\" type=\"button\" aria-pressed=\"false\"><span aria-hidden=\"true\">⛶</span><span>" + tr("shapeFullscreen") + "</span></button>";
 }
 
 function isShapeCanvasExpanded() {
@@ -568,6 +660,13 @@ async function toggleShapeCanvasFullscreen() {
   }
   setShapeCanvasFallback(true);
   beep("tap");
+}
+
+function bindShapeCanvasFullscreen() {
+  const button = document.querySelector("#shapeFullscreenToggle");
+  if (!button) return;
+  button.addEventListener("click", toggleShapeCanvasFullscreen);
+  updateShapeCanvasFullscreenButton();
 }
 
 function applyStaticLanguage() {
@@ -637,8 +736,8 @@ function featureMetric(label, value, property, active) {
 }
 
 const factories = {
-  shapeExplorer: () => ({ shape: "cube", rotation: 0, property: 0, viewX: -18, viewY: 30, selectedFace: null }),
-  netBuilder: () => ({ shape: "cube", net: 0, step: 0, viewX: -18, viewY: 30 }),
+  shapeExplorer: () => ({ shape: "cube", rotation: 0, property: 0, viewX: -18, viewY: 30, selectedFace: null, assembleSolid: false }),
+  netBuilder: () => ({ shape: NET_SOLIDS[randomInt(0, NET_SOLIDS.length - 1)].id, step: 0, viewX: -18, viewY: 30, revealed: false }),
   shapeDrawer: () => ({ points: [], closed: false, corners: 4, solid: false, depth: 58, property: 0, viewX: -18, viewY: 30 }),
   prismLab: () => ({ sides: 3, depth: 64, property: 0, viewX: -18, viewY: 30 }),
   symmetryLab: () => ({ mode: "stamps", cells: ["1,1","2,2","3,1","4,3"], stamp: "star", randomCount: 4, stamps: [{ id: 1, type: "star", x: 105, y: 82 }, { id: 2, type: "circle", x: 176, y: 166 }, { id: 3, type: "triangle", x: 88, y: 238 }] }),
@@ -711,7 +810,9 @@ function randomizeCurrent() {
   switch (state.activity) {
     case "shapeExplorer": {
       const current = SHAPES.findIndex(shape => shape.id === t.shape);
-      t.shape = SHAPES[(current + randomInt(1, SHAPES.length - 1)) % SHAPES.length].id;
+      const nextShape = SHAPES[(current + randomInt(1, SHAPES.length - 1)) % SHAPES.length];
+      t.shape = nextShape.id;
+      t.assembleSolid = nextShape.kind === "3d";
       t.rotation = randomInt(-25, 25);
       t.viewX = randomInt(-35, 25);
       t.viewY = randomInt(-55, 55);
@@ -721,8 +822,8 @@ function randomizeCurrent() {
     case "netBuilder": {
       const current = NET_SOLIDS.findIndex(item => item.id === t.shape);
       t.shape = NET_SOLIDS[(current + randomInt(1, NET_SOLIDS.length - 1)) % NET_SOLIDS.length].id;
-      t.net = 0;
       t.step = 0;
+      t.revealed = false;
       t.viewX = -18;
       t.viewY = 30;
       break;
@@ -775,7 +876,7 @@ function randomizeCurrent() {
   renderTool();
 }
 
-function showGeometryCelebration(answerText) {
+function showNetRevealCelebration(answerText) {
   const celebration = window.EdCloudCorrectCelebration;
   if (typeof celebration?.show !== "function") {
     beep("done");
@@ -784,12 +885,12 @@ function showGeometryCelebration(answerText) {
   celebration.show({
     animation: "random",
     language: guideLanguage(),
-    title: loc(ml("Hebat!", "完成了！", "Great job!")),
-    message: loc(ml("Bentangan kamu sudah menjadi bentuk 3D.", "你已经把展开图折成立体图形了。", "You folded the net into a 3D solid.")),
-    answerLabel: loc(ml("Bentuk siap", "完成的图形", "Completed shape")),
+    title: loc(ml("Adakah tekaan kamu betul?", "你猜对了吗？", "Did you guess correctly?")),
+    message: loc(ml("Jawapan sebenar sudah dibuka. Adakah jawapan itu sama dengan tekaan kamu?", "正确答案已经揭晓，和你的猜想一样吗？", "The answer is revealed. Does it match your guess?")),
+    answerLabel: loc(ml("Jawapan sebenar", "正确答案", "Correct answer")),
     answerText,
-    reviewText: loc(ml("Lihat model", "查看模型", "View model")),
-    nextText: tr("newExample"),
+    reviewText: loc(ml("Lihat semula", "再看一次", "Look again")),
+    nextText: loc(ml("Teka bentuk seterusnya", "猜下一个图形", "Guess another shape")),
     soundEnabled: state.sound,
     onReview: () => els.stage.focus?.({ preventScroll: true }),
     onNext: randomizeCurrent
@@ -964,9 +1065,9 @@ function sphereSvgContent(t, property) {
     })));
   }
   return "<defs><radialGradient id=\"solidSphere\" cx=\"34%\" cy=\"28%\"><stop offset=\"0\" stop-color=\"#fff4bc\"/><stop offset=\".58\" stop-color=\"#ffd778\"/><stop offset=\"1\" stop-color=\"#df9626\"/></radialGradient><clipPath id=\"sphereClip\"><circle cx=\"210\" cy=\"150\" r=\"" + (sphereRadius - 2).toFixed(1) + "\"/></clipPath></defs>" +
-    "<circle class=\"solid-sphere" + (property === 0 ? " feature-active" : "") + "\" cx=\"210\" cy=\"150\" r=\"" + sphereRadius.toFixed(1) + "\" fill=\"url(#solidSphere)\"/>" +
-    "<g clip-path=\"url(#sphereClip)\">" + paths.map(path => "<path class=\"sphere-grid\" d=\"" + path + "\"/>").join("") + "</g>" +
-    (property === 0 ? "<text class=\"solid-face-label\" x=\"210\" y=\"156\" text-anchor=\"middle\">1</text>" : "");
+    "<g class=\"solid-assembly-part solid-sphere-shell\" data-solid-part=\"1\"><circle class=\"solid-sphere" + (property === 0 ? " feature-active" : "") + "\" cx=\"210\" cy=\"150\" r=\"" + sphereRadius.toFixed(1) + "\" fill=\"url(#solidSphere)\"/></g>" +
+    "<g class=\"solid-assembly-detail solid-sphere-grid\" clip-path=\"url(#sphereClip)\">" + paths.map(path => "<path class=\"sphere-grid\" d=\"" + path + "\"/>").join("") + "</g>" +
+    (property === 0 ? "<text class=\"solid-face-label solid-assembly-detail\" x=\"210\" y=\"156\" text-anchor=\"middle\">1</text>" : "");
 }
 
 function solidSvgContent(shape, t, options = {}) {
@@ -996,7 +1097,7 @@ function solidSvgContent(shape, t, options = {}) {
     const colourIndex = face.colourIndex || face.id;
     const label = options.faceLabel ? options.faceLabel(face) : face.id;
     const labelClass = options.faceLabelClass ? " " + options.faceLabelClass(face) : "";
-    return "<g><polygon data-solid-face=\"" + face.id + "\" class=\"solid-face face-" + colourIndex + (face.curved ? " curved-piece" : "") + (property === 0 ? " feature-active" : "") + (selected ? " selected" : "") + "\" points=\"" + points + "\"/>" +
+    return "<g class=\"solid-assembly-part solid-face-group\" data-solid-part=\"" + face.id + "\"><polygon data-solid-face=\"" + face.id + "\" class=\"solid-face face-" + colourIndex + (face.curved ? " curved-piece" : "") + (property === 0 ? " feature-active" : "") + (selected ? " selected" : "") + "\" points=\"" + points + "\"/>" +
       (chosen && (property === 0 || options.alwaysLabels) ? "<text class=\"solid-face-label" + labelClass + "\" x=\"" + centre[0].toFixed(1) + "\" y=\"" + (centre[1] + 6).toFixed(1) + "\" text-anchor=\"middle\">" + label + "</text>" : "") + "</g>";
   }).join("");
   const edgeMarkup = model.edges.filter(edge => visibleVertices.has(edge[0]) && visibleVertices.has(edge[1])).map((edge, index) => {
@@ -1006,22 +1107,90 @@ function solidSvgContent(shape, t, options = {}) {
     const showNumber = property === 1 && (shape.id === "cylinder" ? index < 2 : shape.id === "cone" ? index === 0 : true);
     const middle = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
     const edgeLabelClass = options.edgeLabelClass ? " " + options.edgeLabelClass(edgeNumber, model) : "";
-    return "<g><line class=\"solid-edge edge-color-" + (edgeNumber % 4) + (property === 1 ? " feature-active" : "") + (depth < -.35 ? " back-edge" : "") + "\" x1=\"" + a[0].toFixed(1) + "\" y1=\"" + a[1].toFixed(1) + "\" x2=\"" + b[0].toFixed(1) + "\" y2=\"" + b[1].toFixed(1) + "\"/>" + (showNumber ? "<text class=\"solid-edge-label edge-label-color-" + (edgeNumber % 4) + edgeLabelClass + "\" x=\"" + middle[0].toFixed(1) + "\" y=\"" + (middle[1] - 5).toFixed(1) + "\" text-anchor=\"middle\">" + (edgeNumber + 1) + "</text>" : "") + "</g>";
+    return "<g class=\"solid-assembly-detail solid-edge-group\"><line class=\"solid-edge edge-color-" + (edgeNumber % 4) + (property === 1 ? " feature-active" : "") + (depth < -.35 ? " back-edge" : "") + "\" x1=\"" + a[0].toFixed(1) + "\" y1=\"" + a[1].toFixed(1) + "\" x2=\"" + b[0].toFixed(1) + "\" y2=\"" + b[1].toFixed(1) + "\"/>" + (showNumber ? "<text class=\"solid-edge-label edge-label-color-" + (edgeNumber % 4) + edgeLabelClass + "\" x=\"" + middle[0].toFixed(1) + "\" y=\"" + (middle[1] - 5).toFixed(1) + "\" text-anchor=\"middle\">" + (edgeNumber + 1) + "</text>" : "") + "</g>";
   }).join("");
   const vertexMarkup = property === 2 ? model.vertexIndices.filter(vertex => visibleVertices.has(vertex)).map((vertex, index) => {
     const point = projected[vertex];
     const vertexLabel = options.vertexLabel ? options.vertexLabel(vertex, index, model) : index + 1;
     const vertexLabelClass = options.vertexLabelClass ? " " + options.vertexLabelClass(vertex, index, model) : "";
-    return "<g><circle class=\"solid-vertex\" cx=\"" + point[0].toFixed(1) + "\" cy=\"" + point[1].toFixed(1) + "\" r=\"7\"/><text class=\"solid-vertex-label" + vertexLabelClass + "\" x=\"" + (point[0] + 10).toFixed(1) + "\" y=\"" + (point[1] - 9).toFixed(1) + "\">" + vertexLabel + "</text></g>";
+    return "<g class=\"solid-assembly-detail solid-vertex-group\"><circle class=\"solid-vertex feature-active\" cx=\"" + point[0].toFixed(1) + "\" cy=\"" + point[1].toFixed(1) + "\" r=\"7\"/><text class=\"solid-vertex-label" + vertexLabelClass + "\" x=\"" + (point[0] + 10).toFixed(1) + "\" y=\"" + (point[1] - 9).toFixed(1) + "\">" + vertexLabel + "</text></g>";
   }).join("") : "";
   return faceMarkup + edgeMarkup + vertexMarkup;
+}
+
+const SOLID_ASSEMBLY_PLANS = {
+  cube: { 1: [0,-88,-8,0], 2: [-96,-8,-11,1], 3: [0,92,8,5], 4: [96,4,11,2], 5: [-68,-64,-7,3], 6: [70,66,7,4] },
+  cuboid: { 1: [0,-82,-7,0], 2: [-104,-5,-10,1], 3: [0,88,7,5], 4: [104,5,10,2], 5: [-72,-58,-6,3], 6: [74,60,6,4] },
+  pyramid: { 5: [0,86,5,0], 1: [0,-94,-8,1], 2: [92,-8,10,2], 3: [0,92,8,3], 4: [-92,-8,-10,4] },
+  cylinder: { 2: [-102,0,-8,0], 1: [0,-96,-5,1], 3: [0,96,5,2] },
+  cone: { 1: [0,-96,-8,0], 2: [0,96,6,1] },
+  sphere: { 1: [0,0,-8,0] }
+};
+
+function finishSolidAssembly(svg) {
+  if (!svg) return;
+  const animations = svg.__solidAssemblyAnimations || [];
+  svg.__solidAssemblyAnimations = [];
+  animations.forEach(animation => {
+    try { animation.finish(); } catch {}
+    try { animation.cancel(); } catch {}
+  });
+  svg.classList.remove("solid-assembling");
+  delete svg.dataset.assemblyActive;
+}
+
+function playSolidAssembly(svg, shape) {
+  if (!svg?.isConnected || typeof Element.prototype.animate !== "function" || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const plan = SOLID_ASSEMBLY_PLANS[shape.id];
+  if (!plan) return;
+  const parts = [...svg.querySelectorAll(".solid-assembly-part[data-solid-part]")];
+  if (!parts.length) return;
+  finishSolidAssembly(svg);
+  svg.classList.add("solid-assembling");
+  svg.dataset.assemblyActive = shape.id;
+  const animations = [];
+  const faceDuration = 620;
+  const stepDelay = 65;
+  let latestFaceEnd = faceDuration;
+  parts.forEach(part => {
+    const partPlan = plan[Number(part.dataset.solidPart)] || [0,0,0,0];
+    const [x, y, turn, order] = partPlan;
+    const delay = order * stepDelay;
+    latestFaceEnd = Math.max(latestFaceEnd, delay + faceDuration);
+    const startScale = shape.id === "sphere" ? .48 : .68;
+    const animation = part.animate([
+      { opacity: 0, transform: `translate(${x}px, ${y}px) rotate(${turn}deg) scale(${startScale})` },
+      { opacity: 1, transform: "translate(0, 0) rotate(0deg) scale(1.055)", offset: .76 },
+      { opacity: 1, transform: "translate(0, 0) rotate(0deg) scale(1)" }
+    ], { duration: faceDuration, delay, easing: "cubic-bezier(.2,.82,.28,1.14)", fill: "both" });
+    animations.push(animation);
+  });
+  const detailDelay = Math.max(0, latestFaceEnd - 100);
+  svg.querySelectorAll(".solid-assembly-detail").forEach(detail => {
+    const sphereGrid = detail.classList.contains("solid-sphere-grid");
+    const animation = detail.animate([
+      { opacity: 0, transform: sphereGrid ? "scale(.78) rotate(-5deg)" : "scale(.94)" },
+      { opacity: 1, transform: "scale(1) rotate(0deg)" }
+    ], { duration: 220, delay: detailDelay, easing: "ease-out", fill: "both" });
+    animations.push(animation);
+  });
+  svg.__solidAssemblyAnimations = animations;
+  Promise.allSettled(animations.map(animation => animation.finished)).then(() => {
+    if (svg.__solidAssemblyAnimations !== animations) return;
+    animations.forEach(animation => {
+      try { animation.cancel(); } catch {}
+    });
+    svg.__solidAssemblyAnimations = [];
+    svg.classList.remove("solid-assembling");
+    delete svg.dataset.assemblyActive;
+  });
 }
 
 function solid3dMarkup(id, shape, t, options = {}) {
   const zoomMax = shape.id === "sphere" ? 1.35 : 2.2;
   const zoom = clamp(Number(t.zoom) || 1, .7, zoomMax);
   const zoomControls = options.zoomControls === false ? "" : "<div class=\"solid-zoom-controls\" aria-label=\"" + loc(ml("Kawalan zum", "缩放控制", "Zoom controls")) + "\"><button type=\"button\" data-solid-zoom=\"out\" aria-label=\"" + loc(ml("Zum keluar", "缩小", "Zoom out")) + "\">−</button><button type=\"button\" class=\"solid-zoom-value\" data-solid-zoom=\"reset\" aria-label=\"" + loc(ml("Tetapkan zum 100 peratus", "恢复 100%", "Reset zoom to 100 percent")) + "\">" + Math.round(zoom * 100) + "%</button><button type=\"button\" data-solid-zoom=\"in\" aria-label=\"" + loc(ml("Zum masuk", "放大", "Zoom in")) + "\">＋</button></div>";
-  return "<div class=\"solid-3d-scene\">" + zoomControls + "<svg id=\"" + id + "\" class=\"solid-3d-svg\" viewBox=\"0 0 420 300\" tabindex=\"0\" role=\"img\" aria-label=\"" + loc(ml("Model 3D boleh diputar dan dizum", "可旋转和缩放的 3D 模型", "Rotatable and zoomable 3D model")) + "\">" + solidSvgContent(shape, t, options) + "</svg><div class=\"solid-drag-hint\">🖐 " + loc(ml("Seret untuk putar · roda tetikus untuk zum", "拖动旋转 · 滚轮缩放", "Drag to rotate · wheel to zoom")) + "</div></div>";
+  return "<div class=\"solid-3d-scene\">" + zoomControls + "<svg id=\"" + id + "\" class=\"solid-3d-svg\" data-solid-shape=\"" + shape.id + "\" viewBox=\"0 0 420 300\" tabindex=\"0\" role=\"img\" aria-label=\"" + loc(ml("Model 3D boleh diputar dan dizum", "可旋转和缩放的 3D 模型", "Rotatable and zoomable 3D model")) + "\">" + solidSvgContent(shape, t, options) + "</svg><div class=\"solid-drag-hint\">🖐 " + loc(ml("Seret untuk putar · roda tetikus untuk zum", "拖动旋转 · 滚轮缩放", "Drag to rotate · wheel to zoom")) + "</div></div>";
 }
 
 function bindSolidDrag(id, shape, t, options = {}) {
@@ -1030,6 +1199,7 @@ function bindSolidDrag(id, shape, t, options = {}) {
   const zoomMax = shape.id === "sphere" ? 1.35 : 2.2;
   t.zoom = clamp(Number(t.zoom) || 1, .7, zoomMax);
   let activePointer = null;
+  let dragSound = null;
   let moved = false;
   let startX = 0;
   let startY = 0;
@@ -1047,6 +1217,7 @@ function bindSolidDrag(id, shape, t, options = {}) {
   };
   svg.addEventListener("pointerdown", event => {
     if (activePointer !== null) return;
+    finishSolidAssembly(svg);
     activePointer = event.pointerId;
     moved = false;
     startX = event.clientX;
@@ -1055,6 +1226,7 @@ function bindSolidDrag(id, shape, t, options = {}) {
     startViewY = t.viewY;
     try { svg.setPointerCapture?.(event.pointerId); } catch {}
     svg.classList.add("dragging");
+    dragSound = beginDragSound(event, "solid");
     window.addEventListener("pointermove", update, { passive: false });
     window.addEventListener("pointerup", stop);
     window.addEventListener("pointercancel", stop);
@@ -1070,12 +1242,15 @@ function bindSolidDrag(id, shape, t, options = {}) {
     t.viewY = (startViewY + dx * .95) % 360;
     t.viewX = clamp(startViewX - dy * .95, -82, 82);
     redraw();
+    dragSound?.move(event, moved);
     event.preventDefault();
   };
   const stop = event => {
     if (event.pointerId !== activePointer) return;
     activePointer = null;
     svg.classList.remove("dragging");
+    dragSound?.end(event);
+    dragSound = null;
     try { svg.releasePointerCapture?.(event.pointerId); } catch {}
     window.removeEventListener("pointermove", update);
     window.removeEventListener("pointerup", stop);
@@ -1129,6 +1304,8 @@ function shapeFeatureExplanation(shape, property, selectedFace) {
 function renderShapeExplorer() {
   const t = state.tool;
   const shape = SHAPES.find(item => item.id === t.shape);
+  const assembleSolid = shape.kind === "3d" && t.assembleSolid === true;
+  t.assembleSolid = false;
   if (!Number.isFinite(t.viewX)) t.viewX = -18;
   if (!Number.isFinite(t.viewY)) t.viewY = 30;
   const properties = shape.kind === "2d"
@@ -1140,18 +1317,20 @@ function renderShapeExplorer() {
     : shapeSvg(shape, t.rotation, t.property);
   setChallenge(loc(shape.name), shape.kind === "3d"
     ? shape.id === "sphere"
-      ? loc(ml("Seret grid pada sfera. Bentuk luar kekal bulat kerana sfera sama dari setiap arah.", "拖动球面网格观察旋转；球体从每个方向看，外形仍然是圆的。", "Drag the grid to rotate it; a sphere still looks round from every direction."))
-      : loc(ml("Seret terus pada model untuk melihat muka hadapan, belakang, atas dan bawah.", "直接拖动模型，查看前、后、上、下各个面。", "Drag the model itself to inspect its front, back, top and bottom."))
+      ? loc(ml("Pilih bentuk 3D lain untuk melihat animasi cantuman. Seret grid sfera untuk melihatnya dari setiap arah.", "选择不同立体可观看拼合动画；拖动球面网格可从不同方向查看。", "Choose another solid to watch it assemble. Drag the sphere grid to view it from every direction."))
+      : loc(ml("Pilih bentuk 3D lain untuk melihat mukanya bercantum, kemudian seret model untuk melihat setiap arah.", "选择不同立体可观看各个面拼合，再拖动模型从不同方向查看。", "Choose another solid to watch its faces assemble, then drag the model to view every side."))
     : loc(ml("Putar bentuk dan sentuh kad sifat untuk memerhati cirinya.", "旋转图形并点击特征卡进行观察。", "Rotate the shape and tap a property card to inspect it.")));
-  const fullscreenButton = "<button id=\"shapeFullscreenToggle\" class=\"shape-fullscreen-toggle\" type=\"button\" aria-pressed=\"false\"><span aria-hidden=\"true\">⛶</span><span>" + tr("shapeFullscreen") + "</span></button>";
-  els.stage.innerHTML = "<div class=\"shape-explorer\"><div class=\"shape-canvas\">" + fullscreenButton + picture + "</div><div class=\"property-panel\">" + properties.map((item, index) => "<button class=\"property-card" + (t.property === index ? " active" : "") + "\" type=\"button\" data-property=\"" + index + "\" aria-pressed=\"" + (t.property === index) + "\"><span>" + item[0] + "</span><strong>" + item[1] + "</strong></button>").join("") + "</div><div class=\"property-explanation\" role=\"status\" aria-live=\"polite\">" + explanation + "</div></div>";
+  els.stage.innerHTML = "<div class=\"shape-explorer\"><div class=\"shape-canvas shape-fullscreen-canvas\">" + shapeFullscreenButtonMarkup() + picture + "</div><div class=\"property-panel\">" + properties.map((item, index) => "<button class=\"property-card" + (t.property === index ? " active" : "") + "\" type=\"button\" data-property=\"" + index + "\" aria-pressed=\"" + (t.property === index) + "\"><span>" + item[0] + "</span><strong>" + item[1] + "</strong></button>").join("") + "</div><div class=\"property-explanation\" role=\"status\" aria-live=\"polite\">" + explanation + "</div></div>";
   const viewControl = shape.kind === "3d"
     ? "<div class=\"board-actions\"><button id=\"reset3dView\" class=\"secondary-button compact\" type=\"button\">⌂ " + loc(ml("Pandangan asal", "恢复初始视角", "Reset view")) + "</button>" + randomButton() + "</div>"
     : "<div class=\"range-grid\" style=\"margin-top:10px\">" + rangeControl("shapeRotation", loc(ml("Putaran", "旋转", "Rotation")), -30, 30, 1, t.rotation, "°") + "</div><div class=\"board-actions\">" + randomButton() + "</div>";
   els.controls.innerHTML = "<div class=\"choice-row\">" + SHAPES.map(item => "<button type=\"button\" class=\"choice-chip" + (item.id === t.shape ? " active" : "") + "\" data-shape=\"" + item.id + "\">" + shapeChoiceIcon(item) + "<span>" + loc(item.name) + "</span></button>").join("") + "</div>" + viewControl;
   els.summary.hidden = true;
   document.querySelectorAll("[data-shape]").forEach(button => button.addEventListener("click", () => {
-    t.shape = button.dataset.shape;
+    const nextShape = SHAPES.find(item => item.id === button.dataset.shape);
+    const changedShape = nextShape?.id !== t.shape;
+    t.shape = nextShape.id;
+    t.assembleSolid = changedShape && nextShape.kind === "3d";
     t.property = 0;
     t.selectedFace = null;
     t.viewX = -18;
@@ -1160,60 +1339,19 @@ function renderShapeExplorer() {
     renderTool();
   }));
   document.querySelectorAll("[data-property]").forEach(button => button.addEventListener("click", () => { t.property = Number(button.dataset.property); t.selectedFace = null; renderTool(); }));
-  document.querySelector("#shapeFullscreenToggle").addEventListener("click", toggleShapeCanvasFullscreen);
-  updateShapeCanvasFullscreenButton();
+  bindShapeCanvasFullscreen();
   const rotation = document.querySelector("#shapeRotation");
   if (rotation) rotation.addEventListener("input", event => { t.rotation = Number(event.target.value); renderTool(); });
   const resetView = document.querySelector("#reset3dView");
   if (resetView) resetView.addEventListener("click", () => { t.viewX = -18; t.viewY = 30; t.zoom = 1; renderTool(); });
-  if (shape.kind === "3d") bindSolidDrag("shapeSolid3d", shape, t, { property: t.property, selectedFace: t.selectedFace, faceClickable: true });
+  if (shape.kind === "3d") {
+    bindSolidDrag("shapeSolid3d", shape, t, { property: t.property, selectedFace: t.selectedFace, faceClickable: true });
+    if (assembleSolid) {
+      const svg = document.querySelector("#shapeSolid3d");
+      requestAnimationFrame(() => playSolidAssembly(svg, shape));
+    }
+  }
   document.querySelector("#randomExample").addEventListener("click", randomizeCurrent);
-}
-
-function netPieceClass(face, base, foldedFaces, currentFace) {
-  const classes = ["net-piece"];
-  if (face === base) classes.push("base");
-  if (foldedFaces.has(face)) classes.push("folded");
-  if (face === currentFace) classes.push("current");
-  return classes.join(" ");
-}
-
-function netLabel(face, x, y) {
-  return "<text class=\"diagram-label net-face-number\" x=\"" + x + "\" y=\"" + y + "\" text-anchor=\"middle\">" + face + "</text>";
-}
-
-function flatNetMarkup(t, definition, foldedFaces, currentFace) {
-  const cls = face => netPieceClass(face, definition.base, foldedFaces, currentFace);
-  if (definition.id === "cube") {
-    const cells = NETS[t.net % NETS.length];
-    const faceIds = [3,2,1,4,5,6];
-    const minX = Math.min(...cells.map(cell => cell[0]));
-    const minY = Math.min(...cells.map(cell => cell[1]));
-    return cells.map((cell, index) => {
-      const face = faceIds[index];
-      const x = 35 + (cell[0] - minX) * 55;
-      const y = 20 + (cell[1] - minY) * 55;
-      return "<rect class=\"" + cls(face) + "\" x=\"" + x + "\" y=\"" + y + "\" width=\"54\" height=\"54\" rx=\"4\"/>" + netLabel(face, x + 27, y + 32);
-    }).join("");
-  }
-  if (definition.id === "cuboid") {
-    const pieces = [
-      [3,100,45,80,45], [2,55,90,45,60], [1,100,90,80,60],
-      [4,180,90,45,60], [5,225,90,80,60], [6,100,150,80,45]
-    ];
-    return pieces.map(piece => "<rect class=\"" + cls(piece[0]) + "\" x=\"" + piece[1] + "\" y=\"" + piece[2] + "\" width=\"" + piece[3] + "\" height=\"" + piece[4] + "\" rx=\"4\"/>" + netLabel(piece[0], piece[1] + piece[3] / 2, piece[2] + piece[4] / 2 + 5)).join("");
-  }
-  if (definition.id === "pyramid") {
-    const pieces = [
-      [1,"110,85 190,85 150,25",150,70], [2,"190,85 190,165 250,125",213,129],
-      [3,"110,165 190,165 150,225",150,190], [4,"110,85 110,165 50,125",87,129]
-    ];
-    return pieces.map(piece => "<polygon class=\"" + cls(piece[0]) + "\" points=\"" + piece[1] + "\"/>" + netLabel(piece[0], piece[2], piece[3])).join("") +
-      "<rect class=\"" + cls(5) + "\" x=\"110\" y=\"85\" width=\"80\" height=\"80\" rx=\"4\"/>" + netLabel(5, 150, 130);
-  }
-  return "<circle class=\"" + cls(1) + "\" cx=\"150\" cy=\"42\" r=\"32\"/>" + netLabel(1, 150, 47) +
-    "<rect class=\"" + cls(2) + "\" x=\"72\" y=\"74\" width=\"156\" height=\"108\" rx=\"5\"/>" + netLabel(2, 150, 133) +
-    "<circle class=\"" + cls(3) + "\" cx=\"150\" cy=\"214\" r=\"32\"/>" + netLabel(3, 150, 219);
 }
 
 function rotatePointAroundLine(point, lineStart, lineEnd, angleDegrees) {
@@ -1260,56 +1398,249 @@ function foldingFaces(id) {
   };
 }
 
-function foldingNetFaceMarkup(shape, definition, t) {
+function cylinderFoldState(step) {
+  return [
+    { roll: 0, top: 0, bottom: 0 },
+    { roll: 1, top: 0, bottom: 0 },
+    { roll: 1, top: 1, bottom: 0 },
+    { roll: 1, top: 1, bottom: 1 }
+  ][clamp(Math.round(step), 0, 3)];
+}
+
+function cylinderFoldPoint(u, y, roll, radius) {
+  if (roll < .001) return [Math.PI * 2 * radius * u, y, 0];
+  const rollingRadius = radius / roll;
+  const angle = Math.PI * 2 * roll * u;
+  return [rollingRadius * Math.sin(angle), y, rollingRadius * (1 - Math.cos(angle))];
+}
+
+function cylinderCapPoints(top, fold, radius, halfHeight, segments) {
+  const direction = top ? 1 : -1;
+  const hingeY = direction * halfHeight;
+  const angle = direction * fold * Math.PI / 2;
+  return Array.from({ length: segments }, (_, index) => {
+    const theta = index * Math.PI * 2 / segments;
+    const localY = direction * radius + radius * Math.sin(theta);
+    return [
+      radius * Math.cos(theta),
+      hingeY + localY * Math.cos(angle),
+      localY * Math.sin(angle)
+    ];
+  });
+}
+
+function cylinderCapCentre(top, fold, radius, halfHeight) {
+  const direction = top ? 1 : -1;
+  const angle = direction * fold * Math.PI / 2;
+  const localY = direction * radius;
+  return [0, direction * halfHeight + localY * Math.cos(angle), localY * Math.sin(angle)];
+}
+
+function cylinderFoldProjected(point, t) {
+  const camera = rotateSolidPoint(point, t.viewX, t.viewY);
+  return { camera, projected: projectSolidPoint(camera, .74) };
+}
+
+function cylinderFoldArrow(from, to, bend = 0) {
+  const middleX = (from[0] + to[0]) / 2 + bend;
+  const middleY = (from[1] + to[1]) / 2 - 18;
+  return "<path class=\"cylinder-move-arrow\" d=\"M " + from[0].toFixed(1) + " " + from[1].toFixed(1) + " Q " + middleX.toFixed(1) + " " + middleY.toFixed(1) + " " + to[0].toFixed(1) + " " + to[1].toFixed(1) + "\" marker-end=\"url(#cylinderFoldArrow)\"/>";
+}
+
+function cylinderFoldingMarkup(t, foldState = cylinderFoldState(t.step)) {
+  const radius = .52;
+  const halfHeight = .9;
+  const segments = 28;
+  const project = point => cylinderFoldProjected(point, t);
+  const faces = [];
+
+  const sideSections = foldState.roll < .001 ? 1 : segments;
+  for (let index = 0; index < sideSections; index++) {
+    const u0 = -.5 + index / sideSections;
+    const u1 = -.5 + (index + 1) / sideSections;
+    const points = [
+      cylinderFoldPoint(u0, halfHeight, foldState.roll, radius),
+      cylinderFoldPoint(u1, halfHeight, foldState.roll, radius),
+      cylinderFoldPoint(u1, -halfHeight, foldState.roll, radius),
+      cylinderFoldPoint(u0, -halfHeight, foldState.roll, radius)
+    ].map(project);
+    faces.push({
+      id: 2,
+      kind: "side",
+      points,
+      depth: points.reduce((sum, point) => sum + point.camera[2], 0) / points.length
+    });
+  }
+
+  [[1, true, foldState.top], [3, false, foldState.bottom]].forEach(([id, top, fold]) => {
+    const points = cylinderCapPoints(top, fold, radius, halfHeight, segments).map(project);
+    faces.push({
+      id,
+      kind: "cap",
+      points,
+      depth: points.reduce((sum, point) => sum + point.camera[2], 0) / points.length
+    });
+  });
+
+  const currentFace = [null, 2, 1, 3][clamp(Math.round(t.step), 0, 3)];
+  const faceMarkup = faces.sort((a, b) => a.depth - b.depth).map(face => {
+    const current = face.id === currentFace ? " cylinder-fold-current" : "";
+    return "<polygon data-cylinder-face=\"" + face.id + "\" class=\"solid-face face-" + face.id + " feature-active cylinder-" + face.kind + current + "\" points=\"" + face.points.map(point => point.projected.map(value => value.toFixed(1)).join(",")).join(" ") + "\"/>";
+  }).join("");
+
+  const rimPoints = y => Array.from({ length: segments + 1 }, (_, index) => project(cylinderFoldPoint(-.5 + index / segments, y, foldState.roll, radius)).projected);
+  const polyline = (points, css) => "<polyline class=\"" + css + "\" points=\"" + points.map(point => point.map(value => value.toFixed(1)).join(",")).join(" ") + "\"/>";
+  const rimMarkup = foldState.roll > .01
+    ? polyline(rimPoints(halfHeight), "cylinder-rim" + (foldState.top < .99 ? " open" : " closed")) + polyline(rimPoints(-halfHeight), "cylinder-rim" + (foldState.bottom < .99 ? " open" : " closed"))
+    : "";
+  const seam = foldState.roll > .01
+    ? [cylinderFoldPoint(-.5, halfHeight, foldState.roll, radius), cylinderFoldPoint(-.5, -halfHeight, foldState.roll, radius)].map(project).map(point => point.projected)
+    : null;
+  const seamMarkup = seam ? "<line class=\"cylinder-seam\" x1=\"" + seam[0][0].toFixed(1) + "\" y1=\"" + seam[0][1].toFixed(1) + "\" x2=\"" + seam[1][0].toFixed(1) + "\" y2=\"" + seam[1][1].toFixed(1) + "\"/>" : "";
+
+  let arrowMarkup = "";
+  if (foldState.roll < .01) {
+    const left = project(cylinderFoldPoint(-.5, 0, 0, radius)).projected;
+    const right = project(cylinderFoldPoint(.5, 0, 0, radius)).projected;
+    const destination = project([0, 0, radius * 2]).projected;
+    arrowMarkup = cylinderFoldArrow(left, destination, -18) + cylinderFoldArrow(right, destination, 18);
+  }
+
+  const labelPoints = [
+    [1, cylinderCapCentre(true, foldState.top, radius, halfHeight)],
+    [2, cylinderFoldPoint(0, 0, foldState.roll, radius)],
+    [3, cylinderCapCentre(false, foldState.bottom, radius, halfHeight)]
+  ];
+  const labels = labelPoints.map(([id, point]) => {
+    const position = project(point).projected;
+    return "<text class=\"solid-face-label cylinder-face-label face-label-" + id + "\" x=\"" + position[0].toFixed(1) + "\" y=\"" + (position[1] + 6).toFixed(1) + "\" text-anchor=\"middle\">" + id + "</text>";
+  }).join("");
+
+  return "<defs><marker id=\"cylinderFoldArrow\" viewBox=\"0 0 10 10\" refX=\"8\" refY=\"5\" markerWidth=\"4.5\" markerHeight=\"4.5\" orient=\"auto-start-reverse\"><path d=\"M 0 0 L 10 5 L 0 10 Z\"/></marker></defs><g class=\"cylinder-fold-model\" data-cylinder-roll=\"" + foldState.roll.toFixed(2) + "\" data-cylinder-top-fold=\"" + foldState.top.toFixed(2) + "\" data-cylinder-bottom-fold=\"" + foldState.bottom.toFixed(2) + "\">" + faceMarkup + rimMarkup + seamMarkup + arrowMarkup + labels + "</g>";
+}
+
+const NET_FOLD_DURATION = 700;
+
+function syncNetRevealButton(t) {
+  const buttons = document.querySelectorAll("#revealNetAnswer, [data-fullscreen-reveal-answer]");
+  const definition = NET_SOLIDS.find(item => item.id === t.shape);
+  if (!definition) return;
+  const disabled = t.revealed || t.step !== definition.foldOrder.length || Boolean(t.netFoldAnimationFrame);
+  buttons.forEach(button => { button.disabled = disabled; });
+}
+
+function animateCylinderFold(t, fromStep, toStep) {
+  const svg = document.querySelector("#netFold3d");
+  if (!svg || fromStep === toStep || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const from = cylinderFoldState(fromStep);
+  const to = cylinderFoldState(toStep);
+  const started = performance.now();
+  svg.dataset.foldAnimating = "true";
+  const frame = now => {
+    const progress = clamp((now - started) / NET_FOLD_DURATION, 0, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const state = {
+      roll: from.roll + (to.roll - from.roll) * eased,
+      top: from.top + (to.top - from.top) * eased,
+      bottom: from.bottom + (to.bottom - from.bottom) * eased
+    };
+    svg.innerHTML = cylinderFoldingMarkup(t, state);
+    if (progress < 1) {
+      t.netFoldAnimationFrame = window.requestAnimationFrame(frame);
+    } else {
+      svg.innerHTML = cylinderFoldingMarkup(t, to);
+      delete svg.dataset.foldAnimating;
+      t.netFoldAnimationFrame = null;
+      syncNetRevealButton(t);
+    }
+  };
+  svg.innerHTML = cylinderFoldingMarkup(t, from);
+  t.netFoldAnimationFrame = window.requestAnimationFrame(frame);
+}
+
+function foldingNetFaceMarkup(shape, definition, t, visualStep = t.step) {
   if (shape.id === "cylinder") {
-    if (t.step === 0) return flatNetMarkup(t, definition, new Set(), definition.foldOrder[0]);
-    const visibleFaces = t.step === 1 ? [2,1] : [2,1,3];
-    return solidSvgContent(shape, t, { property: 0, visibleFaces, alwaysLabels: true });
+    return cylinderFoldingMarkup(t);
   }
   const setup = foldingFaces(shape.id);
-  const displayScale = setup.scale * (1 + .25 * t.step / Math.max(1, definition.foldOrder.length));
+  const boundedStep = clamp(visualStep, 0, definition.foldOrder.length);
+  const displayScale = setup.scale * (1 + .25 * boundedStep / Math.max(1, definition.foldOrder.length));
   const orderIndex = new Map(definition.foldOrder.map((face, index) => [face, index]));
   const transforms = new Map();
   const transformedFaces = [];
   setup.faces.forEach(face => {
     let transform = point => point.slice();
+    let foldProgress = 1;
     if (face.parent) {
       const parentTransform = transforms.get(face.parent);
-      const folded = (orderIndex.get(face.id) ?? 999) < t.step;
-      transform = point => parentTransform(rotatePointAroundLine(point, face.hinge[0], face.hinge[1], folded ? face.fold : 0));
+      foldProgress = clamp(boundedStep - (orderIndex.get(face.id) ?? 999), 0, 1);
+      transform = point => parentTransform(rotatePointAroundLine(point, face.hinge[0], face.hinge[1], face.fold * foldProgress));
     }
     transforms.set(face.id, transform);
     const world = face.points.map(transform).map(point => [point[0] - setup.centre[0], setup.centre[1] - point[1], point[2]]);
     const camera = world.map(point => rotateSolidPoint(point, t.viewX, t.viewY));
     const projected = camera.map(point => [210 + point[0] * displayScale, 150 - point[1] * displayScale]);
-    transformedFaces.push({ id: face.id, camera, projected, depth: camera.reduce((sum, point) => sum + point[2], 0) / camera.length });
+    transformedFaces.push({ id: face.id, foldProgress, camera, projected, depth: camera.reduce((sum, point) => sum + point[2], 0) / camera.length });
   });
-  const activeFace = t.step > 0 ? definition.foldOrder[t.step - 1] : definition.foldOrder[0];
-  return transformedFaces.sort((a, b) => a.depth - b.depth).map(face => {
+  const activeIndex = boundedStep > 0
+    ? clamp(Math.ceil(boundedStep) - 1, 0, definition.foldOrder.length - 1)
+    : 0;
+  const activeFace = definition.foldOrder[activeIndex];
+  const faceMarkup = transformedFaces.sort((a, b) => a.depth - b.depth).map(face => {
     const centre = face.projected.reduce((sum, point) => [sum[0] + point[0], sum[1] + point[1]], [0,0]).map(value => value / face.projected.length);
-    return "<g class=\"folding-face-group" + (face.id === activeFace ? " active" : "") + "\"><polygon class=\"solid-face face-" + face.id + " feature-active\" points=\"" + face.projected.map(point => point.map(value => value.toFixed(1)).join(",")).join(" ") + "\"/><text class=\"solid-face-label\" x=\"" + centre[0].toFixed(1) + "\" y=\"" + (centre[1] + 6).toFixed(1) + "\" text-anchor=\"middle\">" + face.id + "</text></g>";
+    return "<g data-fold-face=\"" + face.id + "\" data-fold-progress=\"" + face.foldProgress.toFixed(2) + "\" class=\"folding-face-group" + (face.id === activeFace ? " active" : "") + "\"><polygon class=\"solid-face face-" + face.id + " feature-active\" points=\"" + face.projected.map(point => point.map(value => value.toFixed(1)).join(",")).join(" ") + "\"/><text class=\"solid-face-label\" x=\"" + centre[0].toFixed(1) + "\" y=\"" + (centre[1] + 6).toFixed(1) + "\" text-anchor=\"middle\">" + face.id + "</text></g>";
   }).join("");
+  return "<g class=\"polyhedron-fold-model\" data-fold-step=\"" + boundedStep.toFixed(2) + "\">" + faceMarkup + "</g>";
+}
+
+function animatePolyhedronFold(t, shape, definition, fromStep, toStep) {
+  const svg = document.querySelector("#netFold3d");
+  if (!svg || fromStep === toStep || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const started = performance.now();
+  svg.dataset.foldAnimating = "true";
+  const frame = now => {
+    const progress = clamp((now - started) / NET_FOLD_DURATION, 0, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const visualStep = fromStep + (toStep - fromStep) * eased;
+    svg.innerHTML = foldingNetFaceMarkup(shape, definition, t, visualStep);
+    if (progress < 1) {
+      t.netFoldAnimationFrame = window.requestAnimationFrame(frame);
+    } else {
+      svg.innerHTML = foldingNetFaceMarkup(shape, definition, t, toStep);
+      delete svg.dataset.foldAnimating;
+      t.netFoldAnimationFrame = null;
+      syncNetRevealButton(t);
+    }
+  };
+  svg.innerHTML = foldingNetFaceMarkup(shape, definition, t, fromStep);
+  t.netFoldAnimationFrame = window.requestAnimationFrame(frame);
 }
 
 function foldingNetSvg(shape, definition, t) {
-  const flatCylinder = shape.id === "cylinder" && t.step === 0;
-  const viewBox = flatCylinder ? "0 0 310 260" : "0 0 420 300";
-  const hint = flatCylinder
-    ? loc(ml("Bentangan lengkap masih bersambung", "完整展开图保持连接", "The complete net stays connected"))
-    : "🖐 " + loc(ml("Seret terus untuk memutar", "直接拖动即可旋转", "Drag directly to rotate"));
-  return "<div class=\"solid-3d-scene\"><svg id=\"netFold3d\" class=\"solid-3d-svg net-fold-svg\" viewBox=\"" + viewBox + "\" tabindex=\"0\">" + foldingNetFaceMarkup(shape, definition, t) + "</svg><div class=\"solid-drag-hint\">" + hint + "</div></div>";
+  const cylinder = shape.id === "cylinder";
+  const dragHint = cylinder ? "" : "<div class=\"solid-drag-hint\">🖐 " + loc(ml("Seret terus untuk memutar", "直接拖动即可旋转", "Drag directly to rotate")) + "</div>";
+  const ariaLabel = loc(ml("Model lipatan 3D boleh diputar", "可拖动旋转的 3D 折叠模型", "Rotatable 3D folding model"));
+  return "<div class=\"solid-3d-scene" + (cylinder ? " cylinder-fold-scene" : "") + "\"><svg id=\"netFold3d\" class=\"solid-3d-svg net-fold-svg\" viewBox=\"0 0 420 300\" tabindex=\"0\" role=\"img\" aria-label=\"" + ariaLabel + "\">" + foldingNetFaceMarkup(shape, definition, t) + "</svg>" + dragHint + "</div>";
 }
 
 function bindNetFoldDrag(t, shape, definition) {
   const svg = document.querySelector("#netFold3d");
-  if (!svg || (shape.id === "cylinder" && t.step === 0)) return;
+  if (!svg) return;
   svg.addEventListener("pointerdown", startEvent => {
+    if (t.netFoldAnimationFrame) {
+      window.cancelAnimationFrame(t.netFoldAnimationFrame);
+      t.netFoldAnimationFrame = null;
+      delete svg.dataset.foldAnimating;
+      svg.innerHTML = foldingNetFaceMarkup(shape, definition, t);
+      syncNetRevealButton(t);
+    }
     startEvent.preventDefault();
     const pointerId = startEvent.pointerId;
     const startX = startEvent.clientX, startY = startEvent.clientY;
     const startViewX = t.viewX, startViewY = t.viewY;
     try { svg.setPointerCapture?.(pointerId); } catch {}
     svg.classList.add("dragging");
+    const dragSound = beginDragSound(startEvent, "net");
     const update = event => {
       if (event.pointerId !== pointerId) return;
       const samples = event.getCoalescedEvents?.();
@@ -1317,11 +1648,13 @@ function bindNetFoldDrag(t, shape, definition) {
       t.viewY = (startViewY + (point.clientX - startX) * .95) % 360;
       t.viewX = clamp(startViewX - (point.clientY - startY) * .95, -82, 82);
       svg.innerHTML = foldingNetFaceMarkup(shape, definition, t);
+      dragSound.move(event);
       event.preventDefault();
     };
     const stop = event => {
       if (event.pointerId !== pointerId) return;
       svg.classList.remove("dragging");
+      dragSound.end(event);
       try { svg.releasePointerCapture?.(pointerId); } catch {}
       window.removeEventListener("pointermove", update);
       window.removeEventListener("pointerup", stop);
@@ -1333,52 +1666,109 @@ function bindNetFoldDrag(t, shape, definition) {
   });
 }
 
+function netFullscreenFoldActionsMarkup(step, maxStep, revealDisabled, revealLabel) {
+  const previousLabel = loc(ml("Langkah sebelumnya", "上一步", "Previous step"));
+  const nextLabel = loc(ml("Langkah seterusnya", "下一步", "Next step"));
+  return "<div class=\"net-fullscreen-fold-actions\" role=\"group\" aria-label=\"" + loc(ml("Kawalan lipatan dan jawapan", "折叠与答案控制", "Folding and answer controls")) + "\">" +
+    "<button class=\"secondary-button compact\" type=\"button\" data-fold-action=\"previous\" " + (step === 0 ? "disabled" : "") + ">← " + previousLabel + "</button>" +
+    "<output class=\"net-fullscreen-fold-step\" aria-live=\"polite\">" + step + "/" + maxStep + "</output>" +
+    "<button class=\"primary-button compact\" type=\"button\" data-fold-action=\"next\" " + (step === maxStep ? "disabled" : "") + ">" + nextLabel + " →</button>" +
+    "<button class=\"primary-button compact reveal-answer-button net-fullscreen-reveal-answer\" type=\"button\" data-fullscreen-reveal-answer " + (revealDisabled ? "disabled" : "") + ">" + revealLabel + "</button>" +
+  "</div>";
+}
+
 function renderNetBuilder() {
   const t = state.tool;
+  t.revealed = Boolean(t.revealed);
+  const foldTransitionFrom = Number.isFinite(t.foldTransitionFrom) ? t.foldTransitionFrom : null;
+  delete t.foldTransitionFrom;
+  if (t.netFoldAnimationFrame) {
+    window.cancelAnimationFrame(t.netFoldAnimationFrame);
+    t.netFoldAnimationFrame = null;
+  }
   if (!NET_SOLIDS.some(item => item.id === t.shape)) t.shape = "cube";
   const definition = NET_SOLIDS.find(item => item.id === t.shape);
   const shape = SHAPES.find(item => item.id === definition.id);
   const maxStep = definition.foldOrder.length;
   t.step = clamp(t.step, 0, maxStep);
+  const foldWillAnimate = foldTransitionFrom !== null && foldTransitionFrom !== t.step && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!Number.isFinite(t.viewX)) t.viewX = -18;
   if (!Number.isFinite(t.viewY)) t.viewY = 30;
-  const nextFace = t.step < maxStep ? definition.foldOrder[t.step] : null;
-  const lastFoldedFace = t.step > 0 ? definition.foldOrder[t.step - 1] : null;
-  const currentFace = lastFoldedFace || nextFace;
-  const foldedFaces = new Set(definition.foldOrder.slice(0, t.step));
-  const netMarkup = flatNetMarkup(t, definition, foldedFaces, currentFace);
   const modelMarkup = foldingNetSvg(shape, definition, t);
   const shapeName = loc(shape.name);
-  const stepTitle = t.step === 0
-    ? loc(ml("Mula dengan bentangan rata", "从平面展开图开始", "Start with the flat net")) + " · " + shapeName
+  const stepTitle = t.revealed
+    ? loc(ml("Jawapan dibuka", "答案揭晓", "Answer revealed")) + " · " + shapeName
     : t.step === maxStep
-      ? loc(ml("Lipatan lengkap", "折合完成", "Folding complete")) + " · " + shapeName
-      : loc(ml("Langkah ", "第 ", "Step ")) + t.step + " · " + loc(ml("Muka ", "面 ", "Face ")) + lastFoldedFace + " " + loc(ml("telah dilipat", "已折起", "folded"));
-  const stepInstruction = t.step === maxStep
-    ? loc(ml("Semua permukaan kini berada pada kedudukan 3D yang sepadan.", "所有面现在都在对应的立体位置。", "Every surface is now in its matching 3D position."))
-    : t.step === 0
-      ? loc(ml("Muka ", "面 ", "Face ")) + definition.base + " " + loc(ml("menjadi tapak. Tekan Langkah seterusnya.", "作为底面；点击“下一步”。", "is the base. Press Next step."))
-      : loc(ml("Muka yang baru dilipat diserlahkan. Seterusnya lipat muka ", "刚折起的面已高亮；下一步折起面 ", "The folded face is highlighted. Next, fold face ")) + nextFace + ".";
+      ? loc(ml("Lipatan lengkap · Sudah teka?", "折叠完成 · 你猜到了吗？", "Folding complete · Have you guessed?"))
+      : t.step === 0
+        ? loc(ml("Perhatikan dahulu, kemudian teka", "先观察，再猜一猜", "Study it first, then guess"))
+        : loc(ml("Teruskan melipat", "继续折叠", "Keep folding")) + " · " + t.step + "/" + maxStep;
+  const stepInstruction = t.revealed
+    ? loc(ml("Adakah jawapan ini sama dengan tekaan kamu?", "这个答案和你的猜想一样吗？", "Does this answer match your guess?"))
+    : t.step === maxStep
+      ? loc(ml("Sebut tekaan kamu dahulu, kemudian tekan Buka jawapan.", "先说出你的猜测，再点击“揭晓答案”。", "Say your guess first, then press Reveal answer."))
+      : t.step === 0
+        ? loc(ml("Apakah bentuk 3D yang akan terhasil daripada bentangan misteri ini?", "这个未知展开图会折成什么立体图形？", "Which 3D solid will this mystery net make?"))
+        : loc(ml("Perhatikan muka bernombor yang bergerak dan simpan tekaan kamu.", "观察编号面的移动方向，先把答案留在心里。", "Watch where each numbered face moves and keep your guess in mind."));
   setChallenge(stepTitle, stepInstruction);
-  els.stage.innerHTML = "<div class=\"net-board\"><div class=\"net-panel\"><div class=\"panel-caption\">" + loc(ml("Bentangan rata", "平面展开图", "Flat net")) + " · " + shapeName + "</div><svg class=\"geometry-svg net-flat-svg\" viewBox=\"0 0 310 260\">" + netMarkup + "</svg></div><div class=\"net-panel\"><div class=\"panel-caption\">" + loc(ml("Binaan 3D · Langkah ", "立体构造 · 第 ", "3D build · Step ")) + t.step + "/" + maxStep + "</div>" + modelMarkup + "</div></div>";
-  els.controls.innerHTML = "<div class=\"choice-row net-shape-choices\">" + NET_SOLIDS.map(item => {
-    const itemShape = SHAPES.find(shapeItem => shapeItem.id === item.id);
-    return "<button type=\"button\" class=\"choice-chip" + (item.id === t.shape ? " active" : "") + "\" data-net-shape=\"" + item.id + "\">" + shapeChoiceIcon(itemShape) + "<span>" + loc(itemShape.name) + "</span></button>";
-  }).join("") + "</div><div class=\"range-grid\" style=\"margin-top:10px\">" + rangeControl("foldStep", loc(ml("Langkah lipatan", "折合步骤", "Folding step")), 0, maxStep, 1, t.step, "/" + maxStep) + "</div><div class=\"board-actions\"><button id=\"previousFold\" class=\"secondary-button compact\" type=\"button\" " + (t.step === 0 ? "disabled" : "") + ">← " + loc(ml("Langkah sebelumnya", "上一步", "Previous step")) + "</button><button id=\"nextFold\" class=\"primary-button compact\" type=\"button\" " + (t.step === maxStep ? "disabled" : "") + ">" + loc(ml("Langkah seterusnya", "下一步", "Next step")) + " →</button><button id=\"resetNetView\" class=\"secondary-button compact\" type=\"button\">⌂ " + loc(ml("Pandangan asal", "恢复视角", "Reset view")) + "</button>" + randomButton("newNet") + "</div>";
+  const modelCaption = shape.id === "cylinder"
+    ? ""
+    : "<div class=\"panel-caption\">" + loc(ml("Binaan 3D · Langkah ", "立体构造 · 第 ", "3D build · Step ")) + t.step + "/" + maxStep + "</div>";
+  const revealDisabled = t.revealed || t.step !== maxStep || foldWillAnimate;
+  const revealLabel = t.revealed
+    ? "✓ " + loc(ml("Jawapan", "答案", "Answer")) + ": " + shapeName
+    : t.step === maxStep
+      ? "✨ " + loc(ml("Buka jawapan", "揭晓答案", "Reveal answer"))
+      : "🔒 " + loc(ml("Lengkapkan lipatan dahulu", "完成折叠后揭晓", "Finish folding to reveal"));
+  const existingModelPanel = els.stage.querySelector(".net-model-panel");
+  const preserveFullscreenPanel = Boolean(existingModelPanel && (
+    document.fullscreenElement === existingModelPanel ||
+    document.webkitFullscreenElement === existingModelPanel ||
+    existingModelPanel.classList.contains("is-viewport-fullscreen")
+  ));
+  const modelPanelContent = shapeFullscreenButtonMarkup() + modelCaption + modelMarkup + netFullscreenFoldActionsMarkup(t.step, maxStep, revealDisabled, revealLabel);
+  if (preserveFullscreenPanel) {
+    existingModelPanel.classList.toggle("cylinder-model-panel", shape.id === "cylinder");
+    existingModelPanel.innerHTML = modelPanelContent;
+  } else {
+    els.stage.innerHTML = "<div class=\"net-board mystery-net-board\"><div class=\"net-panel net-model-panel shape-fullscreen-canvas" + (shape.id === "cylinder" ? " cylinder-model-panel" : "") + "\">" + modelPanelContent + "</div></div>";
+  }
+  els.controls.innerHTML = "<div class=\"range-grid mystery-fold-range\">" + rangeControl("foldStep", loc(ml("Langkah lipatan", "折合步骤", "Folding step")), 0, maxStep, 1, t.step, "/" + maxStep) + "</div><div class=\"board-actions mystery-net-actions\"><button id=\"previousFold\" class=\"secondary-button compact\" type=\"button\" " + (t.step === 0 ? "disabled" : "") + ">← " + loc(ml("Langkah sebelumnya", "上一步", "Previous step")) + "</button><button id=\"nextFold\" class=\"primary-button compact\" type=\"button\" " + (t.step === maxStep ? "disabled" : "") + ">" + loc(ml("Langkah seterusnya", "下一步", "Next step")) + " →</button><button id=\"revealNetAnswer\" class=\"primary-button compact reveal-answer-button\" type=\"button\" " + (revealDisabled ? "disabled" : "") + ">" + revealLabel + "</button><button id=\"resetNetView\" class=\"secondary-button compact\" type=\"button\">⌂ " + loc(ml("Pandangan asal", "恢复视角", "Reset view")) + "</button>" + randomButton("newNet") + "</div>";
   const foldedText = t.step === 0 ? "—" : definition.foldOrder.slice(0, t.step).join(", ");
-  setSummary(loc(ml("Muka yang telah dilipat", "已经折起的面", "Folded faces")) + ": <strong>" + foldedText + "</strong>" + (t.step === maxStep ? " · ✓ " + shapeName + " " + loc(ml("lengkap", "完成", "complete")) : ""), t.step === maxStep ? "success" : "neutral");
-  document.querySelectorAll("[data-net-shape]").forEach(button => button.addEventListener("click", () => { t.shape = button.dataset.netShape; t.step = 0; t.viewX = -18; t.viewY = 30; renderTool(); }));
-  document.querySelector("#foldStep").addEventListener("input", event => { t.step = Number(event.target.value); renderTool(); });
-  document.querySelector("#previousFold").addEventListener("click", () => { t.step = clamp(t.step - 1, 0, maxStep); renderTool(); });
-  document.querySelector("#nextFold").addEventListener("click", () => {
-    const completed = t.step === maxStep - 1;
-    t.step = clamp(t.step + 1, 0, maxStep);
+  const summary = t.revealed
+    ? "<strong>" + loc(ml("Jawapan sebenar", "正确答案", "Correct answer")) + ": " + shapeName + "</strong> · " + loc(ml("Adakah tekaan kamu betul?", "你猜对了吗？", "Did you guess correctly?"))
+    : t.step === maxStep
+      ? "✓ " + loc(ml("Lipatan lengkap. Jawapan masih dirahsiakan — teka dahulu sebelum membukanya.", "折叠完成，答案仍然保密——先猜一猜再揭晓。", "Folding is complete. The answer is still secret—guess before revealing it."))
+      : loc(ml("Muka yang telah dilipat", "已经折起的面", "Folded faces")) + ": <strong>" + foldedText + "</strong>";
+  setSummary(summary, t.revealed ? "success" : "neutral");
+  const moveToFoldStep = value => {
+    const previousStep = t.step;
+    t.step = clamp(value, 0, maxStep);
+    if (previousStep !== t.step) t.foldTransitionFrom = previousStep;
     renderTool();
-    if (completed) window.requestAnimationFrame(() => showGeometryCelebration(shapeName));
-  });
+  };
+  document.querySelector("#foldStep").addEventListener("input", event => moveToFoldStep(Number(event.target.value)));
+  document.querySelector("#previousFold").addEventListener("click", () => moveToFoldStep(t.step - 1));
+  document.querySelector("#nextFold").addEventListener("click", () => moveToFoldStep(t.step + 1));
+  document.querySelectorAll(".net-fullscreen-fold-actions [data-fold-action]").forEach(button => button.addEventListener("click", () => {
+    moveToFoldStep(t.step + (button.dataset.foldAction === "previous" ? -1 : 1));
+  }));
+  const revealAnswer = () => {
+    if (t.revealed || t.step !== maxStep || t.netFoldAnimationFrame) return;
+    t.revealed = true;
+    renderTool();
+    showNetRevealCelebration(shapeName);
+  };
+  document.querySelector("#revealNetAnswer").addEventListener("click", revealAnswer);
+  document.querySelector("[data-fullscreen-reveal-answer]")?.addEventListener("click", revealAnswer);
   document.querySelector("#resetNetView").addEventListener("click", () => { t.viewX = -18; t.viewY = 30; renderTool(); });
   document.querySelector("#newNet").addEventListener("click", randomizeCurrent);
+  bindShapeCanvasFullscreen();
   bindNetFoldDrag(t, shape, definition);
+  if (foldTransitionFrom !== null) {
+    if (shape.id === "cylinder") animateCylinderFold(t, foldTransitionFrom, t.step);
+    else animatePolyhedronFold(t, shape, definition, foldTransitionFrom, t.step);
+  }
 }
 
 function drawnSolidModel(points, depth) {
@@ -1402,6 +1792,43 @@ function drawnSolidModel(points, depth) {
     edges.push([index, next], [count + index, count + next], [index, count + index]);
   }
   return { vertices, faces, edges, vertexIndices: Array.from({ length: count * 2 }, (_, index) => index) };
+}
+
+function drawPlaneBoardMarkup(t) {
+  const grid = [];
+  for (let x = 20; x <= 380; x += 40) for (let y = 20; y <= 280; y += 40) grid.push("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"4\" fill=\"#c1b18e\"/>");
+  const points = t.points.map(point => point.join(",")).join(" ");
+  const lines = t.points.length > 1 ? (t.closed ? "<polygon points=\"" + points + "\" fill=\"rgba(255,215,120,.42)\" class=\"measure-line\"/>" : "<polyline points=\"" + points + "\" class=\"measure-line\"/>") : "";
+  const edgeTotal = t.closed ? t.points.length : Math.max(0, t.points.length - 1);
+  const edgeLabels = Array.from({ length: edgeTotal }, (_, index) => {
+    const a = t.points[index];
+    const b = t.points[(index + 1) % t.points.length];
+    return "<text class=\"draw-edge-label\" x=\"" + ((a[0] + b[0]) / 2) + "\" y=\"" + ((a[1] + b[1]) / 2 - 8) + "\" text-anchor=\"middle\">" + (index + 1) + "</text>";
+  }).join("");
+  const handles = t.points.map((point, index) => "<circle class=\"point-handle\" cx=\"" + point[0] + "\" cy=\"" + point[1] + "\" r=\"8\"/><text class=\"draw-vertex-label\" x=\"" + (point[0] + 11) + "\" y=\"" + (point[1] - 10) + "\">" + (index + 1) + "</text>").join("");
+  return grid.join("") + lines + edgeLabels + handles;
+}
+
+function drawPlaneStatusText(t) {
+  return t.closed
+    ? loc(ml("Bentuk tertutup · sedia untuk 3D", "图形已闭合 · 可以连接成立体", "Closed shape · ready for 3D"))
+    : loc(ml("Bentuk masih terbuka", "图形尚未闭合", "Shape is still open"));
+}
+
+function updateDrawPlaneView(t) {
+  const board = document.querySelector("#drawBoard");
+  if (!board) return;
+  const sideCount = t.closed ? t.points.length : Math.max(0, t.points.length - 1);
+  board.innerHTML = drawPlaneBoardMarkup(t);
+  const cornerCount = document.querySelector("#drawCornerCount");
+  const planeStatus = document.querySelector("#drawPlaneStatus");
+  const closeButton = document.querySelector("#closeDraw");
+  const solidButton = document.querySelector("#toggleDrawSolid");
+  if (cornerCount) cornerCount.textContent = String(t.points.length);
+  if (planeStatus) planeStatus.textContent = drawPlaneStatusText(t);
+  if (closeButton) closeButton.disabled = t.points.length < 3;
+  if (solidButton) solidButton.disabled = !t.closed;
+  setSummary(loc(ml("Bilangan sisi yang kelihatan", "目前可见的边数", "Visible sides")) + ": <strong>" + sideCount + "</strong> · " + loc(ml("Klik atau seret melalui titik grid", "可点击或拖过格点来画", "Click or drag across grid points")));
 }
 
 function renderShapeDrawer() {
@@ -1435,7 +1862,7 @@ function renderShapeDrawer() {
       loc(ml("Pilih Bucu untuk menunjukkan titik A dan B yang sepadan.", "选择“顶点”，显示相互对应的 A、B 顶点。", "Choose Vertices to show the matching A and B points."))
     ][t.property];
     setChallenge(loc(ml("Bentuk telah disambung menjadi 3D", "图形已经连接成立体", "The shape is now connected as a 3D solid")), featureHelp);
-    els.stage.innerHTML = "<div class=\"draw-solid-wrap\">" + solid3dMarkup("drawnSolid3d", solidShape, t, options) + "<div class=\"metric-row feature-metric-row\">" + featureMetric(tr("faces"), sideCount + 2, 0, t.property === 0) + featureMetric(tr("edges"), sideCount * 3, 1, t.property === 1) + featureMetric(tr("vertices"), sideCount * 2, 2, t.property === 2) + "</div></div>";
+    els.stage.innerHTML = "<div class=\"draw-solid-wrap\"><div class=\"draw-solid-canvas shape-fullscreen-canvas\">" + shapeFullscreenButtonMarkup() + solid3dMarkup("drawnSolid3d", solidShape, t, options) + "</div><div class=\"metric-row feature-metric-row\">" + featureMetric(tr("faces"), sideCount + 2, 0, t.property === 0) + featureMetric(tr("edges"), sideCount * 3, 1, t.property === 1) + featureMetric(tr("vertices"), sideCount * 2, 2, t.property === 2) + "</div></div>";
     els.controls.innerHTML = "<div class=\"range-grid\">" + rangeControl("drawDepth", loc(ml("Kedalaman", "立体深度", "Solid depth")), 25, 100, 1, t.depth) + "</div><div class=\"board-actions\"><button id=\"toggleDrawSolid\" class=\"secondary-button compact\" type=\"button\">▦ " + loc(ml("Kembali ke satah", "回到平面", "Back to plane")) + "</button><button id=\"resetDrawView\" class=\"secondary-button compact\" type=\"button\">⌂ " + loc(ml("Pandangan asal", "恢复视角", "Reset view")) + "</button>" + randomButton() + "</div>";
     setSummary(featureHelp);
     document.querySelector("#drawDepth").addEventListener("input", event => { t.depth = Number(event.target.value); renderTool(); });
@@ -1443,29 +1870,21 @@ function renderShapeDrawer() {
     document.querySelector("#resetDrawView").addEventListener("click", () => { t.viewX = -18; t.viewY = 30; t.zoom = 1; renderTool(); });
     document.querySelectorAll("[data-solid-property]").forEach(button => button.addEventListener("click", () => { t.property = Number(button.dataset.solidProperty); renderTool(); }));
     document.querySelector("#randomExample").addEventListener("click", randomizeCurrent);
+    bindShapeCanvasFullscreen();
     bindSolidDrag("drawnSolid3d", solidShape, t, options);
     return;
   }
 
-  const grid = [];
-  for (let x = 20; x <= 380; x += 40) for (let y = 20; y <= 280; y += 40) grid.push("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"4\" fill=\"#c1b18e\"/>");
-  const points = t.points.map(point => point.join(",")).join(" ");
-  const lines = t.points.length > 1 ? (t.closed ? "<polygon points=\"" + points + "\" fill=\"rgba(255,215,120,.42)\" class=\"measure-line\"/>" : "<polyline points=\"" + points + "\" class=\"measure-line\"/>") : "";
-  const edgeTotal = t.closed ? t.points.length : Math.max(0, t.points.length - 1);
-  const edgeLabels = Array.from({ length: edgeTotal }, (_, index) => {
-    const a = t.points[index];
-    const b = t.points[(index + 1) % t.points.length];
-    return "<text class=\"draw-edge-label\" x=\"" + ((a[0] + b[0]) / 2) + "\" y=\"" + ((a[1] + b[1]) / 2 - 8) + "\" text-anchor=\"middle\">" + (index + 1) + "</text>";
-  }).join("");
-  const handles = t.points.map((point, index) => "<circle class=\"point-handle\" cx=\"" + point[0] + "\" cy=\"" + point[1] + "\" r=\"8\"/><text class=\"draw-vertex-label\" x=\"" + (point[0] + 11) + "\" y=\"" + (point[1] - 10) + "\">" + (index + 1) + "</text>").join("");
   setChallenge(loc(ml("Bina bentuk pada grid", "在格点上构造图形", "Build a shape on the grid")), loc(ml("Klik titik atau tahan dan seret melalui beberapa titik.", "可逐点点击，也可按住并拖过多个格点。", "Click points, or hold and drag across several grid points.")));
-  els.stage.innerHTML = "<div class=\"draw-wrap\"><svg id=\"drawBoard\" class=\"draw-board\" viewBox=\"0 0 400 300\">" + grid.join("") + lines + edgeLabels + handles + "</svg><div class=\"draw-help\">" + metric(tr("corners"), t.points.length) + "<div class=\"formula-strip\">" + (t.closed ? loc(ml("Bentuk tertutup · sedia untuk 3D", "图形已闭合 · 可以连接成立体", "Closed shape · ready for 3D")) : loc(ml("Bentuk masih terbuka", "图形尚未闭合", "Shape is still open"))) + "</div></div></div>";
+  els.stage.innerHTML = "<div class=\"draw-wrap\"><div class=\"draw-canvas-shell shape-fullscreen-canvas\">" + shapeFullscreenButtonMarkup() + "<svg id=\"drawBoard\" class=\"draw-board\" viewBox=\"0 0 400 300\">" + drawPlaneBoardMarkup(t) + "</svg></div><div class=\"draw-help\"><div class=\"metric\"><span>" + tr("corners") + "</span><strong id=\"drawCornerCount\">" + t.points.length + "</strong></div><div id=\"drawPlaneStatus\" class=\"formula-strip\">" + drawPlaneStatusText(t) + "</div></div></div>";
   els.controls.innerHTML = "<div class=\"board-actions\"><button id=\"undoPoint\" class=\"secondary-button compact\" type=\"button\">↶ " + tr("undo") + "</button><button id=\"closeDraw\" class=\"primary-button compact\" type=\"button\" " + (t.points.length < 3 ? "disabled" : "") + ">◇ " + tr("closeShape") + "</button><button id=\"toggleDrawSolid\" class=\"primary-button compact\" type=\"button\" " + (!t.closed ? "disabled" : "") + ">⬡ " + loc(ml("Sambung jadi 3D", "连接成立体", "Connect as 3D")) + "</button><button id=\"clearDraw\" class=\"secondary-button compact\" type=\"button\">↻ " + tr("clear") + "</button>" + randomButton() + "</div>";
   setSummary(loc(ml("Bilangan sisi yang kelihatan", "目前可见的边数", "Visible sides")) + ": <strong>" + sideCount + "</strong> · " + loc(ml("Klik atau seret melalui titik grid", "可点击或拖过格点来画", "Click or drag across grid points")));
+  bindShapeCanvasFullscreen();
   const board = document.querySelector("#drawBoard");
   board.addEventListener("pointerdown", startEvent => {
     if (t.closed) return;
     startEvent.preventDefault();
+    const dragSound = beginDragSound(startEvent, "draw");
     const rect = board.getBoundingClientRect();
     let drawing = true;
     const addPoint = (event, requireNear) => {
@@ -1478,18 +1897,19 @@ function renderShapeDrawer() {
       if (existing === 0 && t.points.length >= 3) {
         t.closed = true;
         beep("done");
-        renderTool();
+        updateDrawPlaneView(t);
         return;
       }
       if (existing !== -1) return;
       t.points.push([x, y]);
       t.solid = false;
-      renderTool();
+      updateDrawPlaneView(t);
     };
     addPoint(startEvent, false);
-    const move = event => { if (drawing && !t.closed) { event.preventDefault(); addPoint(event, true); } };
-    const stop = () => {
+    const move = event => { if (drawing && !t.closed) { event.preventDefault(); dragSound.move(event); addPoint(event, true); } };
+    const stop = event => {
       drawing = false;
+      dragSound.end(event);
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", stop);
       window.removeEventListener("pointercancel", stop);
@@ -1498,10 +1918,10 @@ function renderShapeDrawer() {
     window.addEventListener("pointerup", stop, { once: true });
     window.addEventListener("pointercancel", stop, { once: true });
   });
-  document.querySelector("#undoPoint").addEventListener("click", () => { t.solid = false; t.closed = false; t.points.pop(); renderTool(); });
-  document.querySelector("#closeDraw").addEventListener("click", () => { if (t.points.length >= 3) { t.closed = true; beep("done"); } renderTool(); });
+  document.querySelector("#undoPoint").addEventListener("click", () => { t.solid = false; t.closed = false; t.points.pop(); updateDrawPlaneView(t); });
+  document.querySelector("#closeDraw").addEventListener("click", () => { if (t.points.length >= 3) { t.closed = true; beep("done"); } updateDrawPlaneView(t); });
   document.querySelector("#toggleDrawSolid").addEventListener("click", () => { if (t.closed) { t.solid = true; renderTool(); } });
-  document.querySelector("#clearDraw").addEventListener("click", () => { t.points = []; t.closed = false; t.solid = false; renderTool(); });
+  document.querySelector("#clearDraw").addEventListener("click", () => { t.points = []; t.closed = false; t.solid = false; updateDrawPlaneView(t); });
   document.querySelector("#randomExample").addEventListener("click", randomizeCurrent);
 }
 
@@ -1596,9 +2016,11 @@ function bindSymmetryStampDrag() {
     const itemStartY = item.y;
     const mirror = board.querySelector("[data-mirror-id=\"" + id + "\"]");
     try { stamp.setPointerCapture?.(pointerId); } catch {}
+    const dragSound = beginDragSound(startEvent, "symmetry");
     const update = event => {
       if (event.pointerId !== pointerId) return;
       event.preventDefault();
+      dragSound.move(event);
       const samples = event.getCoalescedEvents?.();
       const point = samples?.length ? samples[samples.length - 1] : event;
       item.x = clamp(itemStartX + (point.clientX - startX) / rect.width * 600, 28, 272);
@@ -1608,6 +2030,7 @@ function bindSymmetryStampDrag() {
     };
     const stop = event => {
       if (event.pointerId !== pointerId) return;
+      dragSound.end(event);
       try { stamp.releasePointerCapture?.(pointerId); } catch {}
       window.removeEventListener("pointermove", update);
       window.removeEventListener("pointerup", stop);
@@ -1744,6 +2167,7 @@ function bindAngleDrag() {
     const pointerId = startEvent.pointerId;
     const isConstruction = state.grade === 6;
     try { board.setPointerCapture?.(pointerId); } catch {}
+    const dragSound = beginDragSound(startEvent, "angle");
     const redraw = () => {
       board.innerHTML = protractorSvg(state.tool.angle, isConstruction ? state.tool.target : null, true);
       const range = document.querySelector("#angleRange");
@@ -1766,6 +2190,7 @@ function bindAngleDrag() {
     const update = event => {
       if (event.pointerId !== pointerId) return;
       event.preventDefault();
+      dragSound.move(event);
       const samples = event.getCoalescedEvents?.();
       const point = samples?.length ? samples[samples.length - 1] : event;
       const x = (point.clientX - rect.left) / rect.width * 500;
@@ -1779,6 +2204,7 @@ function bindAngleDrag() {
     };
     const end = event => {
       if (event.pointerId !== pointerId) return;
+      dragSound.end(event);
       try { board.releasePointerCapture?.(pointerId); } catch {}
       window.removeEventListener("pointermove", update);
       window.removeEventListener("pointerup", end);
@@ -1899,6 +2325,7 @@ function bindLineDrag() {
       const rect = board.getBoundingClientRect();
       const pointerId = startEvent.pointerId;
       try { board.setPointerCapture?.(pointerId); } catch {}
+      const dragSound = beginDragSound(startEvent, "line");
       const redraw = () => {
         const { markup, relation } = lineDiagram(state.tool);
         board.innerHTML = markup;
@@ -1918,6 +2345,7 @@ function bindLineDrag() {
       const update = event => {
         if (event.pointerId !== pointerId) return;
         event.preventDefault();
+        dragSound.move(event);
         const samples = event.getCoalescedEvents?.();
         const point = samples?.length ? samples[samples.length - 1] : event;
         const x = (point.clientX - rect.left) / rect.width * 640;
@@ -1933,6 +2361,7 @@ function bindLineDrag() {
       };
       const stop = event => {
         if (event.pointerId !== pointerId) return;
+        dragSound.end(event);
         try { board.releasePointerCapture?.(pointerId); } catch {}
         window.removeEventListener("pointermove", update);
         window.removeEventListener("pointerup", stop);
@@ -2187,6 +2616,7 @@ function bindCircleDrag() {
     const rect = board.getBoundingClientRect();
     const pointerId = startEvent.pointerId;
     try { board.setPointerCapture?.(pointerId); } catch {}
+    const dragSound = beginDragSound(startEvent, "circle");
     const redraw = () => {
       board.innerHTML = circleDiagram(state.tool).markup;
       const range = document.getElementById("circleDraw");
@@ -2200,6 +2630,7 @@ function bindCircleDrag() {
     const update = event => {
       if (event.pointerId !== pointerId) return;
       event.preventDefault();
+      dragSound.move(event);
       const samples = event.getCoalescedEvents?.();
       const point = samples?.length ? samples[samples.length - 1] : event;
       const x = (point.clientX - rect.left) / rect.width * 520;
@@ -2214,6 +2645,7 @@ function bindCircleDrag() {
     };
     const stop = event => {
       if (event.pointerId !== pointerId) return;
+      dragSound.end(event);
       try { board.releasePointerCapture?.(pointerId); } catch {}
       window.removeEventListener("pointermove", update);
       window.removeEventListener("pointerup", stop);
@@ -2343,6 +2775,7 @@ document.querySelectorAll("[data-lang]").forEach(button => button.addEventListen
 
 els.sound.addEventListener("click", () => {
   state.sound = !state.sound;
+  if (!state.sound) activeDragSoundSession?.end();
   operationGuide?.setSoundEnabled(state.sound);
   applyStaticLanguage();
   if (state.sound) beep("done");
