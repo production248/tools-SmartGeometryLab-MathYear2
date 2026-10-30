@@ -488,6 +488,48 @@ function getAudioContext() {
   }
 }
 
+const interactionSoundFiles = {
+  crayon: "assets/sfx/crayon-stroke.mp3",
+  paper: "assets/sfx/quiet-page-turn.mp3"
+};
+const interactionSoundBuffers = new Map();
+function playInteractionSound(kind, duration = .4) {
+  const context = getAudioContext();
+  if (!context) return;
+  let loading = interactionSoundBuffers.get(kind);
+  if (!loading) {
+    loading = fetch(interactionSoundFiles[kind])
+      .then(response => { if (!response.ok) throw new Error(`Sound unavailable: ${kind}`); return response.arrayBuffer(); })
+      .then(bytes => context.decodeAudioData(bytes));
+    interactionSoundBuffers.set(kind, loading);
+  }
+  loading.then(buffer => {
+    if (!state.sound || context.state === "closed") return;
+    const source = context.createBufferSource();
+    const gain = context.createGain();
+    const start = context.currentTime;
+    const offset = kind === "paper" ? 0 : 3.5;
+    const clipLength = Math.min(duration, kind === "paper" ? .5 : duration, buffer.duration - offset);
+    if (clipLength <= 0) return;
+    source.buffer = buffer;
+    const volume = kind === "paper" ? .4 : .6;
+    gain.gain.setValueAtTime(.0001, start);
+    gain.gain.linearRampToValueAtTime(volume, start + (kind === "paper" ? .02 : .035));
+    gain.gain.setValueAtTime(volume, start + Math.max(.08, clipLength - .14));
+    gain.gain.linearRampToValueAtTime(.0001, start + clipLength);
+    if (kind === "paper") {
+      const filter = context.createBiquadFilter();
+      filter.type = "lowpass";
+      filter.frequency.value = 4200;
+      filter.Q.value = .7;
+      source.connect(filter);
+      filter.connect(gain);
+    } else source.connect(gain);
+    gain.connect(context.destination);
+    source.start(start, offset, clipLength);
+  }).catch(error => console.warn("Interaction sound could not play.", error));
+}
+
 function beep(kind = "tap") {
   const context = getAudioContext();
   if (!context) return;
@@ -898,6 +940,7 @@ function showNetRevealCelebration(answerText) {
 }
 
 function renderTool() {
+  stopShapeFeatureSequence();
   updateMeta();
   renderGuide();
   const renderers = {
@@ -931,7 +974,7 @@ function shapeSvg(shape, rotation, property = 0) {
         : property === 2
           ? "1 " + loc(ml("garis melengkung", "条曲线", "curved line"))
           : "1 " + tr("sides");
-      return "<svg class=\"shape-picture planar-feature-svg\" viewBox=\"0 0 300 230\"><g " + common + "><circle class=\"shape-fill\" cx=\"150\" cy=\"115\" r=\"95\"/><circle class=\"planar-curve" + (activeCurve ? " active" : "") + "\" cx=\"150\" cy=\"115\" r=\"95\"/><text class=\"diagram-label planar-feature-label\" x=\"150\" y=\"121\" text-anchor=\"middle\">" + label + "</text></g></svg>";
+      return "<svg class=\"shape-picture planar-feature-svg\" viewBox=\"0 0 300 230\"><g " + common + "><circle class=\"shape-fill\" cx=\"150\" cy=\"115\" r=\"95\"/><g class=\"planar-curve-group\"><circle class=\"planar-curve" + (activeCurve ? " active" : "") + "\" cx=\"150\" cy=\"115\" r=\"95\"/></g><text class=\"diagram-label planar-feature-label\" x=\"150\" y=\"121\" text-anchor=\"middle\">" + label + "</text></g></svg>";
     }
     const vertices = shape.id === "triangle"
       ? [[150,25],[270,205],[30,205]]
@@ -944,9 +987,9 @@ function shapeSvg(shape, rotation, property = 0) {
       const next = vertices[(index + 1) % vertices.length];
       const middle = [(point[0] + next[0]) / 2, (point[1] + next[1]) / 2];
       const towardCentre = [middle[0] + (centre[0] - middle[0]) * .14, middle[1] + (centre[1] - middle[1]) * .14];
-      return "<line class=\"planar-edge edge-color-" + (index % 4) + "\" x1=\"" + point[0] + "\" y1=\"" + point[1] + "\" x2=\"" + next[0] + "\" y2=\"" + next[1] + "\"/><text class=\"planar-edge-label\" x=\"" + towardCentre[0].toFixed(1) + "\" y=\"" + (towardCentre[1] + 5).toFixed(1) + "\" text-anchor=\"middle\">" + (index + 1) + "</text>";
+      return "<g class=\"planar-edge-group\"><line class=\"planar-edge edge-color-" + (index % 4) + "\" x1=\"" + point[0] + "\" y1=\"" + point[1] + "\" x2=\"" + next[0] + "\" y2=\"" + next[1] + "\"/><text class=\"planar-edge-label\" x=\"" + towardCentre[0].toFixed(1) + "\" y=\"" + (towardCentre[1] + 5).toFixed(1) + "\" text-anchor=\"middle\">" + (index + 1) + "</text></g>";
     }).join("") : "";
-    const corners = property === 1 ? vertices.map((point, index) => "<circle class=\"planar-vertex\" cx=\"" + point[0] + "\" cy=\"" + point[1] + "\" r=\"9\"/><text class=\"planar-vertex-label\" x=\"" + (point[0] + (point[0] < centre[0] ? 14 : -14)) + "\" y=\"" + (point[1] + (point[1] < centre[1] ? 20 : -10)) + "\" text-anchor=\"middle\">" + (index + 1) + "</text>").join("") : "";
+    const corners = property === 1 ? vertices.map((point, index) => "<g class=\"planar-vertex-group\"><circle class=\"planar-vertex\" cx=\"" + point[0] + "\" cy=\"" + point[1] + "\" r=\"9\"/><text class=\"planar-vertex-label\" x=\"" + (point[0] + (point[0] < centre[0] ? 14 : -14)) + "\" y=\"" + (point[1] + (point[1] < centre[1] ? 20 : -10)) + "\" text-anchor=\"middle\">" + (index + 1) + "</text></g>").join("") : "";
     const noCurve = property === 2 ? "<text class=\"diagram-label planar-feature-label\" x=\"150\" y=\"121\" text-anchor=\"middle\">" + loc(ml("Tiada garis melengkung", "没有曲线", "No curved line")) + "</text>" : "";
     return "<svg class=\"shape-picture planar-feature-svg\" viewBox=\"0 0 300 230\"><g " + common + ">" + polygon + edges + corners + noCurve + "</g></svg>";
   }
@@ -1107,7 +1150,7 @@ function solidSvgContent(shape, t, options = {}) {
     const showNumber = property === 1 && (shape.id === "cylinder" ? index < 2 : shape.id === "cone" ? index === 0 : true);
     const middle = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
     const edgeLabelClass = options.edgeLabelClass ? " " + options.edgeLabelClass(edgeNumber, model) : "";
-    return "<g class=\"solid-assembly-detail solid-edge-group\"><line class=\"solid-edge edge-color-" + (edgeNumber % 4) + (property === 1 ? " feature-active" : "") + (depth < -.35 ? " back-edge" : "") + "\" x1=\"" + a[0].toFixed(1) + "\" y1=\"" + a[1].toFixed(1) + "\" x2=\"" + b[0].toFixed(1) + "\" y2=\"" + b[1].toFixed(1) + "\"/>" + (showNumber ? "<text class=\"solid-edge-label edge-label-color-" + (edgeNumber % 4) + edgeLabelClass + "\" x=\"" + middle[0].toFixed(1) + "\" y=\"" + (middle[1] - 5).toFixed(1) + "\" text-anchor=\"middle\">" + (edgeNumber + 1) + "</text>" : "") + "</g>";
+    return "<g class=\"solid-assembly-detail solid-edge-group\" data-feature-index=\"" + edgeNumber + "\"><line class=\"solid-edge edge-color-" + (edgeNumber % 4) + (property === 1 ? " feature-active" : "") + (depth < -.35 ? " back-edge" : "") + "\" x1=\"" + a[0].toFixed(1) + "\" y1=\"" + a[1].toFixed(1) + "\" x2=\"" + b[0].toFixed(1) + "\" y2=\"" + b[1].toFixed(1) + "\"/>" + (showNumber ? "<text class=\"solid-edge-label edge-label-color-" + (edgeNumber % 4) + edgeLabelClass + "\" x=\"" + middle[0].toFixed(1) + "\" y=\"" + (middle[1] - 5).toFixed(1) + "\" text-anchor=\"middle\">" + (edgeNumber + 1) + "</text>" : "") + "</g>";
   }).join("");
   const vertexMarkup = property === 2 ? model.vertexIndices.filter(vertex => visibleVertices.has(vertex)).map((vertex, index) => {
     const point = projected[vertex];
@@ -1207,7 +1250,8 @@ function bindSolidDrag(id, shape, t, options = {}) {
   let startViewY = 0;
   const scene = svg.closest(".solid-3d-scene");
   const redraw = () => {
-    svg.innerHTML = solidSvgContent(shape, t, options);
+    svg.innerHTML = solidSvgContent(shape, t, options.faceClickable ? { ...options, property: t.property, selectedFace: t.selectedFace } : options);
+    if (activeShapeFeatureSequence?.svg === svg) applyShapeFeatureSequenceFrame(activeShapeFeatureSequence, performance.now());
     const value = scene?.querySelector(".solid-zoom-value");
     if (value) value.textContent = Math.round(t.zoom * 100) + "%";
   };
@@ -1268,9 +1312,11 @@ function bindSolidDrag(id, shape, t, options = {}) {
     if (moved || !options.faceClickable) return;
     const face = event.target.closest?.("[data-solid-face]");
     if (!face) return;
+    stopShapeFeatureSequence();
     t.property = 0;
     t.selectedFace = Number(face.dataset.solidFace);
-    renderTool();
+    redraw();
+    options.onFaceSelect?.();
   });
   svg.addEventListener("keydown", event => {
     const moves = { ArrowLeft: [0,-5], ArrowRight: [0,5], ArrowUp: [5,0], ArrowDown: [-5,0] };
@@ -1301,6 +1347,111 @@ function shapeFeatureExplanation(shape, property, selectedFace) {
   return shape.vertices ? loc(ml("Titik merah bernombor ialah bucu, tempat rusuk bertemu.", "有编号的红点是顶点，也就是棱相交的地方。", "Numbered red points are vertices, where edges meet.")) : loc(ml("Bentuk ini tidak mempunyai bucu. Tiada titik merah akan muncul.", "这个立体没有顶点，所以不会出现红点。", "This solid has no vertices, so no red points appear."));
 }
 
+let activeShapeFeatureSequence = null;
+function stopShapeFeatureSequence() {
+  const sequence = activeShapeFeatureSequence;
+  if (sequence) {
+    cancelAnimationFrame(sequence.frame);
+    sequence.svg.classList.remove("feature-sequencing");
+    delete sequence.svg.dataset.featureSequenceStep;
+    sequence.svg.querySelectorAll(".solid-face-group, .solid-sphere-shell, .solid-edge-group, .solid-vertex-group, .planar-edge-group, .planar-vertex-group, .planar-curve-group").forEach(node => {
+      node.style.opacity = "";
+      node.style.filter = "";
+      node.querySelectorAll("text").forEach(label => { label.style.opacity = ""; });
+      node.querySelectorAll("line, circle").forEach(mark => {
+        mark.style.strokeDasharray = "";
+        mark.style.strokeDashoffset = "";
+      });
+    });
+  }
+  activeShapeFeatureSequence = null;
+}
+
+function shapeFeatureGroups(svg, shape, property) {
+  let groups = [];
+  let type = "face";
+  if (shape.kind === "3d" && property === 0) {
+    const byFace = new Map();
+    svg.querySelectorAll(".solid-face-group, .solid-sphere-shell").forEach(node => {
+      const id = Number(node.dataset.solidPart);
+      if (!byFace.has(id)) byFace.set(id, []);
+      byFace.get(id).push(node);
+    });
+    groups = [...byFace].sort((a, b) => a[0] - b[0]).map(([, nodes]) => nodes);
+  } else if (shape.kind === "3d" && property === 1) {
+    type = "edge";
+    const byEdge = new Map();
+    svg.querySelectorAll(".solid-edge-group").forEach(node => {
+      const id = Number(node.dataset.featureIndex);
+      if (!byEdge.has(id)) byEdge.set(id, []);
+      byEdge.get(id).push(node);
+    });
+    groups = [...byEdge].sort((a, b) => a[0] - b[0]).map(([, nodes]) => nodes);
+  } else if (shape.kind === "3d") {
+    type = "vertex";
+    groups = [...svg.querySelectorAll(".solid-vertex-group")].map(node => [node]);
+  } else if (property === 1) {
+    type = "vertex";
+    groups = [...svg.querySelectorAll(".planar-vertex-group")].map(node => [node]);
+  } else {
+    type = "edge";
+    groups = [...svg.querySelectorAll(".planar-edge-group, .planar-curve-group")].map(node => [node]);
+  }
+  return { groups, type };
+}
+
+function applyShapeFeatureSequenceFrame(sequence, now) {
+  if (activeShapeFeatureSequence !== sequence || !sequence.svg.isConnected) return;
+  const { svg, shape, property, type, count, duration, stepDuration } = sequence;
+  const elapsed = Math.max(0, now - sequence.startedAt);
+  if (elapsed >= (count - 1) * stepDuration + duration) {
+    stopShapeFeatureSequence();
+    return;
+  }
+  const current = Math.min(count - 1, Math.floor(elapsed / stepDuration));
+  const progress = clamp((elapsed - current * stepDuration) / duration, 0, 1);
+  if (current !== sequence.lastSoundStep) {
+    sequence.lastSoundStep = current;
+    playInteractionSound("crayon", duration / 1000);
+  }
+  svg.dataset.featureSequenceStep = `${current + 1}/${count}`;
+  const { groups } = shapeFeatureGroups(svg, shape, property);
+  groups.forEach((nodes, groupIndex) => {
+    const amount = groupIndex < current ? 1 : groupIndex === current ? progress : 0;
+    if (type === "edge") {
+      const marks = nodes.flatMap(node => [...node.querySelectorAll("line, circle.planar-curve")]);
+      marks.forEach((mark, segment) => {
+        const length = Math.max(1, mark.getTotalLength());
+        const drawn = clamp(amount * marks.length - segment, 0, 1);
+        mark.style.strokeDasharray = `${length} ${length}`;
+        mark.style.strokeDashoffset = String(length * (1 - drawn));
+      });
+      nodes.forEach(node => node.querySelectorAll("text").forEach(label => { label.style.opacity = amount >= 1 ? "" : "0"; }));
+    } else nodes.forEach(node => {
+      node.style.opacity = String(amount);
+      if (type === "vertex") node.style.filter = amount > 0 && amount < 1 ? "drop-shadow(0 0 7px #e83f51)" : "";
+    });
+  });
+}
+
+function playShapeFeatureSequence(shape, property) {
+  stopShapeFeatureSequence();
+  const svg = document.querySelector("#shapeSolid3d, .shape-explorer .planar-feature-svg");
+  if (!svg || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const { groups, type } = shapeFeatureGroups(svg, shape, property);
+  if (!groups.length) return;
+  const duration = type === "edge" ? (groups.some(group => group.length > 1) ? 520 : 440) : 340;
+  const sequence = { svg, shape, property, type, count: groups.length, duration, stepDuration: duration + 90, startedAt: performance.now(), lastSoundStep: -1, frame: 0 };
+  activeShapeFeatureSequence = sequence;
+  svg.classList.add("feature-sequencing");
+  applyShapeFeatureSequenceFrame(sequence, sequence.startedAt);
+  const tick = now => {
+    applyShapeFeatureSequenceFrame(sequence, now);
+    if (activeShapeFeatureSequence === sequence) sequence.frame = requestAnimationFrame(tick);
+  };
+  sequence.frame = requestAnimationFrame(tick);
+}
+
 function renderShapeExplorer() {
   const t = state.tool;
   const shape = SHAPES.find(item => item.id === t.shape);
@@ -1320,7 +1471,8 @@ function renderShapeExplorer() {
       ? loc(ml("Pilih bentuk 3D lain untuk melihat animasi cantuman. Seret grid sfera untuk melihatnya dari setiap arah.", "选择不同立体可观看拼合动画；拖动球面网格可从不同方向查看。", "Choose another solid to watch it assemble. Drag the sphere grid to view it from every direction."))
       : loc(ml("Pilih bentuk 3D lain untuk melihat mukanya bercantum, kemudian seret model untuk melihat setiap arah.", "选择不同立体可观看各个面拼合，再拖动模型从不同方向查看。", "Choose another solid to watch its faces assemble, then drag the model to view every side."))
     : loc(ml("Putar bentuk dan sentuh kad sifat untuk memerhati cirinya.", "旋转图形并点击特征卡进行观察。", "Rotate the shape and tap a property card to inspect it.")));
-  els.stage.innerHTML = "<div class=\"shape-explorer\"><div class=\"shape-canvas shape-fullscreen-canvas\">" + shapeFullscreenButtonMarkup() + picture + "</div><div class=\"property-panel\">" + properties.map((item, index) => "<button class=\"property-card" + (t.property === index ? " active" : "") + "\" type=\"button\" data-property=\"" + index + "\" aria-pressed=\"" + (t.property === index) + "\"><span>" + item[0] + "</span><strong>" + item[1] + "</strong></button>").join("") + "</div><div class=\"property-explanation\" role=\"status\" aria-live=\"polite\">" + explanation + "</div></div>";
+  const propertyButtons = properties.map((item, index) => "<button class=\"property-card" + (t.property === index ? " active" : "") + "\" type=\"button\" data-property=\"" + index + "\" aria-pressed=\"" + (t.property === index) + "\"><span>" + item[0] + "</span><strong>" + item[1] + "</strong></button>").join("");
+  els.stage.innerHTML = "<div class=\"shape-explorer\"><div class=\"shape-canvas shape-fullscreen-canvas\">" + shapeFullscreenButtonMarkup() + picture + "<div class=\"fullscreen-property-panel\" role=\"group\" aria-label=\"" + loc(ml("Ciri bentuk", "图形特征", "Shape properties")) + "\">" + propertyButtons + "</div></div><div class=\"property-panel\">" + propertyButtons + "</div><div class=\"property-explanation\" role=\"status\" aria-live=\"polite\">" + explanation + "</div></div>";
   const viewControl = shape.kind === "3d"
     ? "<div class=\"board-actions\"><button id=\"reset3dView\" class=\"secondary-button compact\" type=\"button\">⌂ " + loc(ml("Pandangan asal", "恢复初始视角", "Reset view")) + "</button>" + randomButton() + "</div>"
     : "<div class=\"range-grid\" style=\"margin-top:10px\">" + rangeControl("shapeRotation", loc(ml("Putaran", "旋转", "Rotation")), -30, 30, 1, t.rotation, "°") + "</div><div class=\"board-actions\">" + randomButton() + "</div>";
@@ -1338,14 +1490,35 @@ function renderShapeExplorer() {
     t.zoom = 1;
     renderTool();
   }));
-  document.querySelectorAll("[data-property]").forEach(button => button.addEventListener("click", () => { t.property = Number(button.dataset.property); t.selectedFace = null; renderTool(); }));
+  const refreshPropertyUi = () => {
+    els.stage.querySelectorAll(".shape-explorer [data-property]").forEach(button => {
+      const active = Number(button.dataset.property) === t.property;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+    els.stage.querySelector(".property-explanation").textContent = shapeFeatureExplanation(shape, t.property, t.selectedFace);
+  };
+  els.stage.querySelectorAll(".shape-explorer [data-property]").forEach(button => button.addEventListener("click", () => {
+    stopShapeFeatureSequence();
+    t.property = Number(button.dataset.property);
+    t.selectedFace = null;
+    if (shape.kind === "3d") {
+      const svg = els.stage.querySelector("#shapeSolid3d");
+      finishSolidAssembly(svg);
+      svg.innerHTML = solidSvgContent(shape, t, { property: t.property, selectedFace: null });
+    } else {
+      els.stage.querySelector(".planar-feature-svg").outerHTML = shapeSvg(shape, t.rotation, t.property);
+    }
+    refreshPropertyUi();
+    playShapeFeatureSequence(shape, t.property);
+  }));
   bindShapeCanvasFullscreen();
   const rotation = document.querySelector("#shapeRotation");
   if (rotation) rotation.addEventListener("input", event => { t.rotation = Number(event.target.value); renderTool(); });
   const resetView = document.querySelector("#reset3dView");
   if (resetView) resetView.addEventListener("click", () => { t.viewX = -18; t.viewY = 30; t.zoom = 1; renderTool(); });
   if (shape.kind === "3d") {
-    bindSolidDrag("shapeSolid3d", shape, t, { property: t.property, selectedFace: t.selectedFace, faceClickable: true });
+    bindSolidDrag("shapeSolid3d", shape, t, { property: t.property, selectedFace: t.selectedFace, faceClickable: true, onFaceSelect: refreshPropertyUi });
     if (assembleSolid) {
       const svg = document.querySelector("#shapeSolid3d");
       requestAnimationFrame(() => playSolidAssembly(svg, shape));
@@ -1744,7 +1917,10 @@ function renderNetBuilder() {
   const moveToFoldStep = value => {
     const previousStep = t.step;
     t.step = clamp(value, 0, maxStep);
-    if (previousStep !== t.step) t.foldTransitionFrom = previousStep;
+    if (previousStep !== t.step) {
+      t.foldTransitionFrom = previousStep;
+      playInteractionSound("paper", NET_FOLD_DURATION / 1000);
+    }
     renderTool();
   };
   document.querySelector("#foldStep").addEventListener("input", event => moveToFoldStep(Number(event.target.value)));
@@ -2836,7 +3012,7 @@ document.addEventListener("pointerdown", event => {
 
 document.addEventListener("click", event => {
   const button = event.target.closest("button");
-  if (!button || button === els.sound || button.id === "randomExample") return;
+  if (!button || button === els.sound || button.id === "randomExample" || button.matches(".shape-explorer [data-property], [data-fold-action], #nextFold, #previousFold")) return;
   beep("tap");
 });
 

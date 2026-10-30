@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "check": "node --check app.js && node --check auth-bootstrap.js && node --check shared-components-loader.js && node --check scripts/generate-guide-voices.mjs && node --check scripts/smoke-test.mjs",
+    "check": "node --check app.js && node --check auth-bootstrap.js && node --check shared-components-loader.js && node --check scripts/generate-guide-voices.mjs && node --check scripts/smoke-test.mjs && node --check scripts/feature-sequence-test.mjs && node --check scripts/preview-server.mjs",
     "test": "node scripts/smoke-test.mjs",
+    "test:features": "node scripts/feature-sequence-test.mjs",
+    "preview": "node scripts/preview-server.mjs",
     "voices": "node scripts/generate-guide-voices.mjs"
   }
 }

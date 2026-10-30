@@ -21,6 +21,10 @@ the animation is disabled when the device requests reduced motion.
 - `index.html` is the production EdCloud-authorized entry point.
 - `index-preview.html` is a developer-only preview that intentionally bypasses authorization.
 
+For local testing, run `npm run preview` in this folder, then open
+`http://127.0.0.1:8765/index-preview.html` in a browser. The preview server binds only to this
+computer and does not expose the tool to the network.
+
 Do not publish `index-preview.html` as the public learning-resource entry point.
 
 Clicking the bottom-right mascot opens five steps for the currently selected activity only. A
@@ -46,3 +50,18 @@ proxy for `/api/auth/me` to test the production entry.
 Run `npm test` to validate all three activities, five guide steps per activity, 45 narration files,
 desktop classroom type, the 390×844 mobile layout, reduced motion, authorization entry points, and
 the shared completion celebration.
+
+Shape Explorer keeps the face/edge/vertex controls available inside shape full-screen. Property
+highlights appear one at a time, with edges drawn as individual strokes; each curved rim on a
+cylinder or cone is treated as one mathematical edge. Dragging to rotate the shape preserves the
+ongoing face, edge, or vertex sequence. Net Folder plays a paper sound when a fold
+step changes. All interaction sounds respect the app's sound toggle.
+
+The interaction samples in `assets/sfx/` are CC0 recordings from Freesound:
+
+- `crayon-stroke.mp3`: [KaterinaGalasova, "15GGalasovaK_crayon.wav"](https://freesound.org/people/KaterinaGalasova/sounds/461928/)
+- `quiet-page-turn.mp3`: [SpaceJoe, "Quiet Page Turn - 6"](https://freesound.org/people/SpaceJoe/sounds/484966/)
+
+Run `node scripts/feature-sequence-test.mjs` for a focused browser test of the full-screen
+controls, sequential feature animation, logical curved-edge counts, and sound playback. The
+broader `npm test` suite additionally needs the sibling EdCloud shared-components package.

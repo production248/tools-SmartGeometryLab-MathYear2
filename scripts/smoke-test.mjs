@@ -27,6 +27,7 @@ const chromeCandidates = [
 ];
 const chromePath = chromeCandidates.find(existsSync);
 if (!chromePath) throw new Error("Chrome or Edge was not found.");
+const hasFfprobe = spawnSync("ffprobe", ["-version"], { windowsHide: true }).status === 0;
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -42,23 +43,33 @@ assert(!previewHtml.includes('id="authGate"'), "Preview unexpectedly contains th
 for (const id of shapeIconIds) {
   const path = resolve(toolRoot, "assets", "shape-icons", `${id}.png`);
   assert(existsSync(path) && statSync(path).size > 2048, `Missing crayon shape icon: ${id}.png`);
-  const probe = spawnSync("ffprobe", [
-    "-v", "error", "-select_streams", "v:0",
-    "-show_entries", "stream=codec_name,width,height,pix_fmt", "-of", "json", path
-  ], { encoding: "utf8", windowsHide: true });
-  assert(probe.status === 0, `Invalid crayon shape icon: ${id}.png`);
-  const stream = JSON.parse(probe.stdout).streams?.[0];
-  assert(stream?.codec_name === "png" && stream.width === 256 && stream.height === 256 && stream.pix_fmt === "rgba", `Crayon shape icon must be a 256x256 transparent PNG: ${id}.png (${probe.stdout.trim()})`);
+  if (hasFfprobe) {
+    const probe = spawnSync("ffprobe", [
+      "-v", "error", "-select_streams", "v:0",
+      "-show_entries", "stream=codec_name,width,height,pix_fmt", "-of", "json", path
+    ], { encoding: "utf8", windowsHide: true });
+    assert(probe.status === 0, `Invalid crayon shape icon: ${id}.png`);
+    const stream = JSON.parse(probe.stdout).streams?.[0];
+    assert(stream?.codec_name === "png" && stream.width === 256 && stream.height === 256 && stream.pix_fmt === "rgba", `Crayon shape icon must be a 256x256 transparent PNG: ${id}.png (${probe.stdout.trim()})`);
+  } else {
+    const image = readFileSync(path);
+    assert(image.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10])) && image.readUInt32BE(16) === 256 && image.readUInt32BE(20) === 256 && image[25] === 6, `Crayon shape icon must be a 256x256 transparent PNG: ${id}.png`);
+  }
 }
 
 for (const language of ["bm", "zh", "en"]) {
   for (const key of contextualKeys) {
     const path = resolve(toolRoot, "assets", "operation-guide", "voices", language, "contextual", `${key}.mp3`);
     assert(existsSync(path) && statSync(path).size > 1024, `Missing narration: ${language}/${key}.mp3`);
-    const probe = spawnSync("ffprobe", [
-      "-v", "error", "-select_streams", "a:0", "-show_entries", "stream=codec_name", "-of", "default=noprint_wrappers=1:nokey=1", path
-    ], { encoding: "utf8", windowsHide: true });
-    assert(probe.status === 0 && probe.stdout.trim() === "mp3", `Invalid narration: ${language}/${key}.mp3`);
+    if (hasFfprobe) {
+      const probe = spawnSync("ffprobe", [
+        "-v", "error", "-select_streams", "a:0", "-show_entries", "stream=codec_name", "-of", "default=noprint_wrappers=1:nokey=1", path
+      ], { encoding: "utf8", windowsHide: true });
+      assert(probe.status === 0 && probe.stdout.trim() === "mp3", `Invalid narration: ${language}/${key}.mp3`);
+    } else {
+      const audio = readFileSync(path);
+      assert(audio.toString("ascii", 0, 3) === "ID3" || (audio[0] === 255 && (audio[1] & 224) === 224), `Invalid narration: ${language}/${key}.mp3`);
+    }
   }
 }
 
@@ -133,7 +144,7 @@ async function waitFor(expression, message, timeout = 10000) {
     if (await evaluate(expression)) return;
     await delay(100);
   }
-  throw new Error(message);
+  throw new Error(`${message} Browser errors: ${browserErrors.join(" | ")}`);
 }
 
 async function setMysterySolid(id) {
